@@ -1,0 +1,13 @@
+query LiveStream {
+  program(source:zhcn, type: [Video, Clip]) {
+    id
+    date
+    timeLeft
+    programTitle
+    programDescription
+    image {
+      url
+    }
+    url
+  }
+}

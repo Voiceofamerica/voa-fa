@@ -1,0 +1,49 @@
+
+query ArticleRoute($id: Int) {
+  content(source: fa, type: [], id: $id) {
+    id
+    title
+    pubDate
+    lastUpdated
+    url
+    content
+    authors {
+      name {
+        first
+        last
+      }
+    }
+    image {
+      url
+    }
+    video {
+      url
+      thumbnail
+      videoDescription
+    }
+    audio {
+      url
+      audioTitle
+      audioDescription
+    }
+    photoGallery {
+      id
+      photoGalleryTitle
+      photoGalleryDescription
+      photo {
+        id
+        photoTitle
+        photoDescription
+        url
+        order
+      }
+    }
+    relatedStories {
+      id
+      storyTitle
+      thumbnailUrl
+      pubDate
+    }
+    type
+  }
+}

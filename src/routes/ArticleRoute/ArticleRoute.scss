@@ -1,0 +1,171 @@
+
+@import "'~@voiceofamerica/voa-shared/commonStyles/index";
+
+.articleRoute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  
+  .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: $menu-height;
+    margin-bottom: 30px;
+    padding-bottom: 200px;
+  }
+
+  .heading {
+    h1 {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 2vw 5vw;
+      text-align: center;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px solid black;
+      margin: 0 20vw;
+    }
+
+    h2 {
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      margin: 1vw 5vw;
+    }
+
+    h3 {
+      font-size: 0.9em;
+      text-align: center;
+      margin: 1vw;
+    }
+  }
+
+  .contentIcon {
+    color: white;
+    font-size: 2.2em;
+    text-shadow: 0 0 0.2em #000;
+  }
+
+  .mediaButtonContainer {
+    position: fixed;
+    bottom: $menu-height;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+  }
+
+  .mediaButton {
+    $size: 50px;
+    $margin: 10px;
+    @include touchable();
+
+    height: $size;
+    width: $size;
+    border-radius: $size / 2;
+    overflow: hidden;
+    font-size: $size / 4;
+    margin-right: $margin;
+    margin-bottom: $margin;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .articleText {
+    font-size: 1em;
+    margin: 10px;
+
+    .paragraph {
+      margin-bottom: 1em;
+    }
+  }
+
+  .centerIcon {
+    font-size: 1.4em;
+    margin-top: -0.1em;
+    margin-bottom: -0.1em;
+  }
+
+  .iconText {
+    font-size: 0.4em;
+    margin-top: -0.4em;
+  }
+
+  .relatedArticles {
+    flex: 1;
+
+    .relatedContentHeading {
+      display: inline-block;
+      padding: 4px;
+      border-radius: 4px;
+      background: $light-grey;
+      margin: 5px 10px;
+    }
+  }
+
+  .gallery {
+    margin: 10px 0;
+
+    .photoContent {
+      background: $voa-grey;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 70px;
+      overflow: hidden;
+
+      .photoContainer {
+        background: black;
+        height: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1vw;
+        object-fit: contain;
+
+        .photoItem {
+          max-height: 98vw;
+          overflow: hidden;
+          display: flex;
+        }
+      }
+      
+      .photoTextContainer {
+        margin: 10px;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .photoText {
+          padding: 5px;
+          background: white;
+          height: 8em;
+          overflow-y: scroll;
+          padding-bottom: 20px;
+  
+          .photoTitle {
+            font-weight: bold;
+            font-size: 1.2em;
+          }
+        }
+
+        .fadeOut {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 20px;
+          background: linear-gradient(transparent, white)
+        }
+      }
+    }
+  }
+}
