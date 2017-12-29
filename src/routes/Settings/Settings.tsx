@@ -28,17 +28,17 @@ class SettingsRoute extends React.Component<Props> {
       <div className={settings}>
         <div className={panicButtonHolder}>
           <div className={panicButton} onClick={clearAll}>
-            马上删除此程序
+            این اپ را حذف کن
           </div>
         </div>
         <div className={buttons}>
           <button className={settingsButton} onClick={() => history.push(`/settings/categories`)}>
-            新闻分类排序
-            <i className={`mdi mdi-chevron-right ${buttonIcon}`} />
+            مدیریت موضوعات
+            <i className={`mdi mdi-chevron-left ${buttonIcon}`} />
           </button>
           <button className={settingsButton} onClick={() => history.push(`/settings/media`)}>
-            视频设置
-            <i className={`mdi mdi-chevron-right ${buttonIcon}`} />
+            تنظیم‌های صدا
+            <i className={`mdi mdi-chevron-left ${buttonIcon}`} />
           </button>
         </div>
       </div>

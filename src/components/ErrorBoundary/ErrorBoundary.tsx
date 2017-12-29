@@ -27,10 +27,10 @@ export default class ErrorBoundary extends React.Component<Props, State> {
       return (
         <div className={errorBoundary}>
           <div className={content}>
-            发生错误
+            اشکالی ایجاد شده است
           </div>
           <div className={retryButton} onClick={() => this.setState({ hasError: false })}>
-            重试
+            دوباره تلاش کنید
           </div>
         </div>
       )

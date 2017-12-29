@@ -97,8 +97,8 @@ class CategorySettingsBase extends React.Component<Props, LocalState> {
     if (separator) {
       return (
         <div key={'separator'} style={{ gridColumnStart: 1, gridColumnEnd: 3, fontWeight: 'bold', fontSize: '1.5em', marginLeft: 5, marginRight: 5 }}>
-          所有分类
-          <span style={{ float: 'right', fontSize: '0.8em', fontWeight: 'normal' }}>长按拖动调整分类</span>
+          همه موضوع‌ها
+          <span style={{ float: 'right', fontSize: '0.8em', fontWeight: 'normal' }}>لطفا موضوع‌تان را به اینجا بکشید</span>
         </div>
       )
     } else {
@@ -129,11 +129,11 @@ class CategorySettingsBase extends React.Component<Props, LocalState> {
 
     return (
       <div className={categorySettings}>
-        <div className={topNav}>新闻分类排序</div>
+        <div className={topNav}>مدیریت موضوعات</div>
         <Loader data={data}>
           <div className={pillContainer}>
             <div style={{ fontWeight: 'bold', gridColumnStart: 1, gridColumnEnd: 3, fontSize: '1.5em', marginLeft: 5, marginRight: 5 }}>
-              我的分类
+              موضوعات من
             </div>
             {
               allCategoriesWithSeparator.map(this.renderCategory)

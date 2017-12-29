@@ -50,7 +50,7 @@ class HomeRouteBase extends React.Component<Props, State> {
   goToArticle (id: number) {
     this.goTo(`/article/${id}`)
   }
-  
+
   componentWillReceiveProps (nextProps: Props) {
     const { data: { variables: { category: newCategory }, loading } } = nextProps
     const { data: { variables: { category: oldCategory } } } = this.props
@@ -154,7 +154,7 @@ class HomeRouteBase extends React.Component<Props, State> {
       <div className={row}>
         <button className={searchButton} onClick={() => this.goTo(`/search/${category}`)}>
           <i className='mdi mdi-magnify' />
-          搜索
+          جستجو
         </button>
       </div>
     )

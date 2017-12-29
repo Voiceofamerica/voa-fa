@@ -117,11 +117,11 @@ class SearchBase extends React.Component<Props, State> {
 
     return (
       <div ref={el => this.inputHeight = el && el.clientHeight || 0 } className={inputs} style={{ bottom: this.state.keyboardHeight }}>
-        <div onClick={() => history.goBack()} className={backButton}>取消</div>
+        <div onClick={() => history.goBack()} className={backButton}>لغو</div>
         <div className={inputsPill}>
           <div className={dropdownPill}>
             <select value={parseInt(zoneId, 10)} className={dropdown} onChange={ev => this.setZoneId(parseInt(ev.currentTarget.value, 10))}>
-              <option value={0}>全部</option>
+              <option value={0}>همه</option>
               {
                 categories.map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -132,7 +132,7 @@ class SearchBase extends React.Component<Props, State> {
           </div>
           <div className={searchInputContainer}>
             <input autoFocus className={searchInput} value={query} onChange={ev => this.setQuery(ev.currentTarget.value)} />
-            { query.length === 0 ? <div className={emptyText}>搜索</div> : null }
+            { query.length === 0 ? <div className={emptyText}>جستجو</div> : null }
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ class SearchBase extends React.Component<Props, State> {
       <div className={searchScreen} style={{ marginBottom }}>
         <TopNav>
           <CenterText>
-            搜索结果
+            جستجو برای ....
           </CenterText>
         </TopNav>
         <SearchArea goTo={this.goTo} query={debouncedQuery} zoneId={parseInt(zoneId, 10)} />

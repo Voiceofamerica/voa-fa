@@ -22,8 +22,8 @@ export default ({ data, children, className = '', style, hasContent = false }: P
   if (error && !hasContent) {
     return (
       <div className={fullClassName} style={style}>
-        发生错误
-        <button className={reloadButton} onClick={() => data.refetch()}>刷新</button>
+        اشکالی ایجاد شده است
+        <button className={reloadButton} onClick={() => data.refetch()}>دوباره تلاش کنید</button>
       </div>
     )
   } else if (loading && !hasContent) {

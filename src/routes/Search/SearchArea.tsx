@@ -30,7 +30,7 @@ class SearchAreaBase extends React.Component<Props> {
   renderEmpty () {
     return (
       <div className={loadingText}>
-        没有
+        نتیجه ای پیدا نشد
       </div>
     )
   }

@@ -27,9 +27,9 @@ export default () => (
       <Route path='/search/:zoneId/:query' component={Search}/>
       <Route path='/search/:zoneId' component={Search}/>
       <Route path='/search' component={Search}/>
-      <HeadingLayout path='/settings' component={Settings} heading='我的设置' />
-      <HeadingLayout path='/liveStream' component={LiveStream} heading='直播时间表'/>
-      <HeadingLayout path='/breakingNews' component={BreakingNews} heading='突发新闻'/>
+      <HeadingLayout path='/settings' component={Settings} heading='تنظیمات من' />
+      <HeadingLayout path='/liveStream' component={LiveStream} heading='پخش زنده '/>
+      <HeadingLayout path='/breakingNews' component={BreakingNews} heading='خبر فوری'/>
       <MainLayout path='/articles/:category' component={CategoryRoute}/>
       <MainLayout path='/' component={HomeRoute}/>
     </Switch>

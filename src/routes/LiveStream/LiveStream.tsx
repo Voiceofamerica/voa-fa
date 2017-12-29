@@ -58,7 +58,7 @@ class LiveStreamBase extends React.Component<Props, State> {
     return (
       <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', height: '100%', zIndex: 1 }}>
         <div style={{ alignContent: 'center', fontSize: '10vw', backgroundColor: 'transparent', textAlign: 'center' }}>
-          装载...
+          در حال بارگذاری
         </div>
       </div>
     )

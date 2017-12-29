@@ -13,19 +13,15 @@ import { mediaSettings, topNav, buttons, settingsButton, items, item, active } f
 const data = {
   speed: [
     {
-      description: '常速',
+      description: 'سرعت معمولی',
       value: 1,
     },
     {
-      description: '1.25倍速',
-      value: 1.25,
-    },
-    {
-      description: '1.5倍速',
+      description: 'سرعت ۱.۵ برابر',
       value: 1.5,
     },
     {
-      description: '2倍速',
+      description: 'سرعت دو برابر',
       value: 2,
     },
   ],
@@ -50,10 +46,10 @@ class MediaSettingsBase extends React.Component<Props> {
 
     return (
       <div className={mediaSettings}>
-        <div className={topNav}>视频设置</div>
+        <div className={topNav}>تنظیم‌های ویدپو</div>
         <div className={buttons}>
           <div className={settingsButton}>
-            播放速度
+            گزینه پخش دوباره
             <div className={items}>
               {
                 data.speed.map(spd => (

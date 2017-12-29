@@ -47,7 +47,7 @@ function MainLayout ({ component: Component, categories, toggleMediaPlayer, ...r
         <div>
           <TopNav>
             <TopNavItem selected={isHeadlines} onClick={() => replace('/')}>
-              要闻
+              سرخط خبرها
             </TopNavItem>
             {
               categories.map((category, index) => (

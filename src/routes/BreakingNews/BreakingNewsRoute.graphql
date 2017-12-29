@@ -1,5 +1,5 @@
 query BreakingNewsRoute {
-  breakingNews(source: zhcn) {
+  breakingNews(source: fa) {
     id
     title
     introduction

@@ -140,7 +140,7 @@ class HomeRouteBase extends React.Component<Props> {
   renderDefault () {
     return (
       <div className={defaultText}>
-        目前没有重突发新闻
+        اکنون خبر شکستن وجود ندارد
       </div>
     )
   }

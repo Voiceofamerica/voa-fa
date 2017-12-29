@@ -80,7 +80,6 @@ class MainBottomNavBase extends React.Component<Props> {
         <RoundItem onClick={this.roundItemAction} className={centerButton}>
           { this.renderImage() }
           { this.renderIcon() }
-          <div className={iconText}>多媒体</div>
         </RoundItem>
         {right}
       </BottomNav>
