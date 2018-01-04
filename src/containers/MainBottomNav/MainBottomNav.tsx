@@ -2,14 +2,14 @@
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
 
-import BottomNav, { IconItem, RoundItem } from '@voiceofamerica/voa-shared/components/BottomNav'
+import BottomNav, { RoundItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
 
 import toggleMediaDrawer from 'redux-store/actions/toggleMediaDrawer'
 import toggleMediaPlaying from 'redux-store/actions/toggleMediaPlaying'
 import AppState from 'types/AppState'
 
-import { bottomNav, centerIcon, iconText, mediaIsOpen, centerButton, backgroundImage, overlay } from './MainBottomNav.scss'
+import { bottomNav, centerIcon, mediaIsOpen, centerButton, backgroundImage, overlay } from './MainBottomNav.scss'
 
 interface OwnProps {
   left: JSX.Element[]
@@ -70,7 +70,7 @@ class MainBottomNavBase extends React.Component<Props> {
   }
 
   render () {
-    const { left, right, toggleMediaPlayer, mediaDrawerOpen, togglePlay, mediaPlaying } = this.props
+    const { left, right, mediaDrawerOpen } = this.props
 
     let className = mediaDrawerOpen ? `${bottomNav} ${mediaIsOpen}` : bottomNav
 
@@ -87,13 +87,13 @@ class MainBottomNavBase extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => ({
+const mapStateToProps = (state: AppState): StateProps => ({
   mediaDrawerOpen: state.media.mediaOpen,
   mediaImageUrl: state.media.imageUrl,
   mediaPlaying: state.media.playing,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<AppState>, ownProps: OwnProps): DispatchProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
   toggleMediaPlayer: () => dispatch(toggleMediaDrawer({})),
   togglePlay: () => dispatch(toggleMediaPlaying({})),
 })

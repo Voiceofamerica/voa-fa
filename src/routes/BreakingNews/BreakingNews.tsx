@@ -1,28 +1,22 @@
 
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { graphql, ChildProps, QueryOpts } from 'react-apollo'
+import { graphql, ChildProps } from 'react-apollo'
 import * as moment from 'moment'
 
 import Card from '@voiceofamerica/voa-shared/components/Card'
 import SecondaryCard from '@voiceofamerica/voa-shared/components/SecondaryCard'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
-import BottomNav, { IconItem, RoundItem } from '@voiceofamerica/voa-shared/components/BottomNav'
-import TopNav, { TopNavItem } from '@voiceofamerica/voa-shared/components/TopNav'
 
 import Loader from 'components/Loader'
 import PullToRefresh from 'components/PullToRefresh'
 
-import { homeRoute, row, contentArea, defaultText, searchButton, ticketIcon, topNav } from './BreakingNews.scss'
+import { homeRoute, row, contentArea, defaultText, ticketIcon } from './BreakingNews.scss'
 import * as Query from './BreakingNewsRoute.graphql'
 import { BreakingNewsRouteQuery } from 'helpers/graphql-types'
 import analytics, { AnalyticsProps } from 'helpers/analytics'
 import { mapImageUrl } from 'helpers/image'
-
-import AppState from 'types/AppState'
-import Category from 'types/Category'
 
 type OwnProps = RouteComponentProps<void>
 type QueryProps = ChildProps<RouteComponentProps<void>, BreakingNewsRouteQuery>
@@ -89,7 +83,7 @@ class HomeRouteBase extends React.Component<Props> {
     return (
       <div className={row}>
         {
-          breakingNews.slice(1, 3).map((blurb, idx) => (
+          breakingNews.slice(1, 3).map((blurb) => (
             <SecondaryCard
               key={blurb.id}
               onPress={() => this.goToArticle(blurb.id)}
@@ -113,7 +107,7 @@ class HomeRouteBase extends React.Component<Props> {
     }
 
     return (
-      breakingNews.slice(3).map((blurb, idx) => (
+      breakingNews.slice(3).map((blurb) => (
         <div className={row} key={blurb.id}>
           <Ticket
             onPress={() => this.goToArticle(blurb.id)}
@@ -196,7 +190,7 @@ const withHomeQuery = graphql(
   },
 )
 
-const withAnalytics = analytics<Props>(({ data }, { match: oldMatch }) => ({
+const withAnalytics = analytics<Props>(({ data }) => ({
   state: 'Breaking News',
   title: 'Breaking News',
   skip: data.loading,

@@ -41,7 +41,7 @@ start().then(() => {
   }
 
   render(App)
-})
+}).catch(console.error)
 
 document.addEventListener(
   'backbutton',

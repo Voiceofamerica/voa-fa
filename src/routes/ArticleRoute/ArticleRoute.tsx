@@ -9,8 +9,7 @@ import { graphql, ChildProps, QueryOpts } from 'react-apollo'
 import * as moment from 'moment'
 
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
-import BottomNav, { IconItem, RoundItem } from '@voiceofamerica/voa-shared/components/BottomNav'
-import Card from '@voiceofamerica/voa-shared/components/Card'
+import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import { ArticleRouteQuery, ArticleRouteQueryVariables } from 'helpers/graphql-types'
@@ -34,8 +33,6 @@ import {
   articleText,
   paragraph,
   contentIcon,
-  centerIcon,
-  iconText,
   relatedArticles,
   relatedContentHeading,
   gallery,
@@ -106,7 +103,7 @@ class ArticleRouteBase extends React.Component<Props> {
       by: authorNames.join('; '),
       pubDate: moment(pubDate).format('lll'),
       content,
-    })
+    }).catch(console.error)
   }
 
   renderImage () {
@@ -244,18 +241,6 @@ class ArticleRouteBase extends React.Component<Props> {
       return null
     }
 
-    const settings = {
-      dots: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }
-
-    // gallery,
-    // photoContent,
-    // photoContainer,
-    // photoText,
-    // photoTitle,
-
     return (
       <div>
         {
@@ -321,7 +306,7 @@ class ArticleRouteBase extends React.Component<Props> {
   }
 
   renderBottomNav () {
-    const { history, toggleMediaPlayer, isFavorite, toggleFavorite } = this.props
+    const { history, isFavorite, toggleFavorite } = this.props
 
     const starIcon = isFavorite ? 'mdi-star' : 'mdi-star-outline'
 
