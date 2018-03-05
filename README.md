@@ -1,5 +1,5 @@
 
-# Voice Of America Mandarin App
+# Voice Of America Farsi App
 
 ## Prerequisites
 

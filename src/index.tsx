@@ -12,7 +12,7 @@ import { start } from 'helpers/psiphon'
 
 const rootElement = document.getElementById('app')
 
-moment.locale('zh-cn')
+moment.locale('fa')
 
 start().then(() => {
   const afsm = (window as any).AndroidFullScreen
