@@ -11,6 +11,7 @@
   bottom: 0;
   background: transparent;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: $menu-height;
 
   .inputs {
@@ -42,7 +43,7 @@
       flex: 1;
       background: $light-grey;
     }
-    
+
     .dropdownPill {
       position: relative;
       display: flex;
@@ -72,7 +73,7 @@
         font-size: 1.5em;
         width: 2em;
         background: linear-gradient(90deg, rgba($border-grey, 0), $border-grey 50%, $border-grey);
-        
+
         [dir="rtl"] & {
           left: 0;
           right: auto;
@@ -95,7 +96,7 @@
       padding: 0 0.5em;
       outline: none;
     }
-    
+
     .emptyText {
       pointer-events: none;
       position: absolute;
@@ -120,7 +121,7 @@
     display: flex;
     flex-direction: row;
   }
-  
+
   .ticketIcon {
     font-size: 2.4em;
     color: white;
