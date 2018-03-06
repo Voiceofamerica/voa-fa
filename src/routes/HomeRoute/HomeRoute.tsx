@@ -17,6 +17,7 @@ import analytics, { AnalyticsProps } from 'helpers/analytics'
 
 import Loader from 'components/Loader'
 import PullToRefresh from 'components/PullToRefresh'
+import { homeLabels } from 'labels'
 
 type QueryProps = ChildProps<RouteComponentProps<void>, HomeRouteQuery>
 
@@ -27,10 +28,6 @@ interface State {
 
 class HomeRouteBase extends React.Component<Props, State> {
   state: State = {
-  }
-
-  componentDidMount () {
-    ready().then(() => this.setState({ startupDone: true })).catch(console.error)
   }
 
   goTo (route: string) {
@@ -75,7 +72,7 @@ class HomeRouteBase extends React.Component<Props, State> {
         <Card
           onPress={() => this.goToArticle(blurb.id)}
           title={<span>{this.renderIcon(blurb)} {blurb.title}</span>}
-          minorText={moment(blurb.pubDate).fromNow()}
+          minorText={moment(blurb.pubDate).format('lll')}
           imageUrl={blurb.image && blurb.image.url}
           factor={1}
         />
@@ -121,7 +118,7 @@ class HomeRouteBase extends React.Component<Props, State> {
           <Ticket
             onPress={() => this.goToArticle(blurb.id)}
             title={blurb.title}
-            minorText={moment(blurb.pubDate).fromNow()}
+            minorText={moment(blurb.pubDate).format('lll')}
             imageUrl={blurb.image && blurb.image.url}
             icon={this.renderIcon(blurb, ticketIcon)}
           />
@@ -135,7 +132,7 @@ class HomeRouteBase extends React.Component<Props, State> {
       <div className={row}>
         <button className={searchButton} onClick={() => this.goTo('/search')}>
           <i className='mdi mdi-magnify' />
-          جستجو
+          {homeLabels.search}
         </button>
       </div>
     )

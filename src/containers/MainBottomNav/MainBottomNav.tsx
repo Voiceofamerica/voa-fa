@@ -6,10 +6,12 @@ import BottomNav, { RoundItem } from '@voiceofamerica/voa-shared/components/Bott
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
 
 import toggleMediaDrawer from 'redux-store/actions/toggleMediaDrawer'
+import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'
 import toggleMediaPlaying from 'redux-store/actions/toggleMediaPlaying'
 import AppState from 'types/AppState'
+import { bottomNavLabels } from 'labels'
 
-import { bottomNav, centerIcon, mediaIsOpen, centerButton, backgroundImage, overlay } from './MainBottomNav.scss'
+import { bottomNav, centerIcon, iconText, mediaIsOpen, centerButton, backgroundImage, overlay } from './MainBottomNav.scss'
 
 interface OwnProps {
   left: JSX.Element[]
@@ -80,6 +82,7 @@ class MainBottomNavBase extends React.Component<Props> {
         <RoundItem onClick={this.roundItemAction} className={centerButton}>
           { this.renderImage() }
           { this.renderIcon() }
+          <div className={iconText}>{bottomNavLabels.media}</div>
         </RoundItem>
         {right}
       </BottomNav>
@@ -94,7 +97,10 @@ const mapStateToProps = (state: AppState): StateProps => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
-  toggleMediaPlayer: () => dispatch(toggleMediaDrawer({})),
+  toggleMediaPlayer: () => {
+    dispatch(toggleMediaDrawer({}))
+    dispatch(toggleCircumventionDrawer({ open: false }))
+  },
   togglePlay: () => dispatch(toggleMediaPlaying({})),
 })
 

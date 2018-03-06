@@ -12,6 +12,8 @@ import DefaultBottomNav from 'containers/DefaultBottomNav'
 import AppState from 'types/AppState'
 import Category from 'types/Category'
 
+import { homeLabels } from 'labels'
+
 interface StateProps {
   categories: Category[]
 }
@@ -37,7 +39,7 @@ function MainLayout ({ component: Component, categories, ...rest }: Props) {
         <div>
           <TopNav>
             <TopNavItem selected={isHeadlines} onClick={() => replace('/')}>
-              سرخط خبرها
+              {homeLabels.headlines}
             </TopNavItem>
             {
               categories.map((category) => (
@@ -46,6 +48,9 @@ function MainLayout ({ component: Component, categories, ...rest }: Props) {
                 </TopNavItem>
               ))
             }
+            <TopNavItem onClick={() => replace('/settings/categories')}>
+              {homeLabels.manage}
+            </TopNavItem>
           </TopNav>
 
           <ErrorBoundary>

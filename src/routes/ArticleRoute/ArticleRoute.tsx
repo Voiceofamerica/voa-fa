@@ -13,8 +13,7 @@ import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import { ArticleRouteQuery, ArticleRouteQueryVariables } from 'helpers/graphql-types'
-import playMedia from 'redux-store/thunks/playMediaFromBlob'
-import toggleMediaDrawer from 'redux-store/actions/toggleMediaDrawer'
+import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 import toggleFavoriteContent from 'redux-store/actions/toggleFavoriteContent'
 
 import { mapImageUrl } from 'helpers/image'
@@ -23,6 +22,7 @@ import { generatePDF } from 'helpers/articlePrinter'
 import MainBottomNav from 'containers/MainBottomNav'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Loader from 'components/Loader'
+import { articleLabels } from 'labels'
 
 import AppState from 'types/AppState'
 
@@ -54,11 +54,11 @@ export interface Params {
 
 interface StateProps {
   isFavorite: boolean
+  textSize: number
 }
 
 interface DispatchProps {
   playMedia: (url: string, title: string, description: string, isVideo: boolean, imageUrl?: string) => void
-  toggleMediaPlayer: () => void
   toggleFavorite: (favorite?: boolean) => void
 }
 
@@ -81,6 +81,16 @@ class ArticleRouteBase extends React.Component<Props> {
     if (!this.props.data.content || !this.props.data.content[0]) {
       return
     }
+    const id = this.props.match.params.id
+    const articleTitle = this.props.data.content[0].title
+    const authors = this.props.data.content[0].authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
+
+    this.props.analytics.shareArticle({
+      id,
+      articleTitle,
+      authors,
+    })
+
     const { url } = this.props.data.content[0]
 
     window.plugins.socialsharing.shareWithOptions({
@@ -104,6 +114,49 @@ class ArticleRouteBase extends React.Component<Props> {
       pubDate: moment(pubDate).format('lll'),
       content,
     }).catch(console.error)
+  }
+
+  toggleFavorite = () => {
+    if (!this.props.data.content || !this.props.data.content[0]) {
+      return
+    }
+    const id = this.props.match.params.id
+    const articleTitle = this.props.data.content[0].title
+    const authors = this.props.data.content[0].authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
+
+    this.props.analytics.favoriteArticle({
+      id,
+      articleTitle,
+      authors,
+    })
+    this.props.toggleFavorite()
+  }
+
+  renderBottomNav () {
+    const { history, isFavorite } = this.props
+
+    const starIcon = isFavorite ? 'mdi-star' : 'mdi-star-outline'
+
+    return (
+      <MainBottomNav
+        left={[
+          <IconItem key={0} onClick={() => history.goBack()}>
+            <i className='mdi mdi-chevron-left' />
+          </IconItem>,
+          <IconItem key={1} onClick={this.share}>
+            <i className='mdi mdi-share' />
+          </IconItem>,
+        ]}
+        right={[
+          <IconItem key={0} onClick={this.toggleFavorite}>
+            <i className={`mdi ${starIcon}`} />
+          </IconItem>,
+          <IconItem key={1} onClick={this.download}>
+            <i className='mdi mdi-download' />
+          </IconItem>,
+        ]}
+      />
+    )
   }
 
   renderImage () {
@@ -146,7 +199,7 @@ class ArticleRouteBase extends React.Component<Props> {
 
     return (
       <div style={{ fontWeight: 'bold' }}>
-        {updated.format('lll')}更新
+        {articleLabels.updatedOn(updated.format('lll'))}
       </div>
     )
   }
@@ -165,6 +218,8 @@ class ArticleRouteBase extends React.Component<Props> {
         className={mediaButton}
         onClick={() => playMedia(video.url, article.title, video.videoDescription, true, video.thumbnail)}
         src={video.thumbnail}
+        showSpinner
+        alwaysShow
       >
         <i className={`mdi mdi-monitor ${contentIcon}`} />
       </ResilientImage>
@@ -287,7 +342,7 @@ class ArticleRouteBase extends React.Component<Props> {
     return (
       <div className={relatedArticles}>
         <span className={relatedContentHeading}>
-          相关内容
+          {articleLabels.relatedContent}
         </span>
         {
           article.relatedStories.map(related => (
@@ -305,36 +360,11 @@ class ArticleRouteBase extends React.Component<Props> {
     )
   }
 
-  renderBottomNav () {
-    const { history, isFavorite, toggleFavorite } = this.props
-
-    const starIcon = isFavorite ? 'mdi-star' : 'mdi-star-outline'
-
-    return (
-      <MainBottomNav
-        left={[
-          <IconItem key={0} onClick={() => history.goBack()}>
-            <i className='mdi mdi-chevron-left' />
-          </IconItem>,
-          <IconItem key={1} onClick={this.share}>
-            <i className='mdi mdi-share' />
-          </IconItem>,
-        ]}
-        right={[
-          <IconItem key={0} onClick={() => toggleFavorite()}>
-            <i className={`mdi ${starIcon}`} />
-          </IconItem>,
-          <IconItem key={1} onClick={this.download}>
-            <i className='mdi mdi-download' />
-          </IconItem>,
-        ]}
-      />
-    )
-  }
-
   render () {
+    const { textSize } = this.props
+
     return (
-      <div className={articleRoute}>
+      <div className={articleRoute} style={{ fontSize: `${textSize}em` }}>
         <Loader data={this.props.data}>
           <ErrorBoundary>
             { this.renderArticle() }
@@ -349,6 +379,7 @@ class ArticleRouteBase extends React.Component<Props> {
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => {
   return {
     isFavorite: !!state.favorites[ownProps.match.params.id],
+    textSize: state.settings.textSize,
   }
 }
 
@@ -356,7 +387,6 @@ const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: OwnProps): Dispat
   return {
     playMedia: (mediaUrl, mediaTitle, mediaDescription, isVideo, imageUrl?) =>
       dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, isVideo, imageUrl })),
-    toggleMediaPlayer: () => dispatch(toggleMediaDrawer({})),
     toggleFavorite: (favorite?: boolean) => {
       if (!ownProps.data || !ownProps.data.content || !ownProps.data.content[0]) {
         return
@@ -417,7 +447,7 @@ const withQuery = graphql(
 const withRedux = connect(mapStateToProps, mapDispatchToProps)
 
 export default compose(
-  withRedux,
   withQuery,
+  withRedux,
   withAnalytics,
 )(ArticleRouteBase)

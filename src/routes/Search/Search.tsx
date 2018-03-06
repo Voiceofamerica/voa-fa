@@ -6,12 +6,11 @@ import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import shallowCompare from 'shallow-compare'
 
-import TopNav, { CenterText } from '@voiceofamerica/voa-shared/components/TopNav'
-
 import AppState from 'types/AppState'
 import Category from 'types/Category'
 
 import analytics, { AnalyticsProps } from 'helpers/analytics'
+import { searchLabels } from 'labels'
 
 import SearchArea from './SearchArea'
 
@@ -35,7 +34,7 @@ const THROTTLE_TIMEOUT = 1000
 class SearchBase extends React.Component<Props, State> {
   state: State = {
     keyboardHeight: 0,
-    debouncedQuery: '',
+    debouncedQuery: this.props.match.params.query,
   }
 
   private inputHeight: number = 0
@@ -112,11 +111,11 @@ class SearchBase extends React.Component<Props, State> {
 
     return (
       <div ref={el => this.inputHeight = el && el.clientHeight || 0 } className={inputs} style={{ bottom: this.state.keyboardHeight }}>
-        <div onClick={() => history.goBack()} className={backButton}>لغو</div>
+        <div onClick={() => history.goBack()} className={backButton}>{searchLabels.back}</div>
         <div className={inputsPill}>
           <div className={dropdownPill}>
             <select value={parseInt(zoneId, 10)} className={dropdown} onChange={ev => this.setZoneId(parseInt(ev.currentTarget.value, 10))}>
-              <option value={0}>همه</option>
+              <option value={0}>{searchLabels.all}</option>
               {
                 categories.map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -127,7 +126,7 @@ class SearchBase extends React.Component<Props, State> {
           </div>
           <div className={searchInputContainer}>
             <input autoFocus className={searchInput} value={query} onChange={ev => this.setQuery(ev.currentTarget.value)} />
-            { query.length === 0 ? <div className={emptyText}>جستجو</div> : null }
+            { query.length === 0 ? <div className={emptyText}>{searchLabels.query}</div> : null }
           </div>
         </div>
       </div>
@@ -142,11 +141,6 @@ class SearchBase extends React.Component<Props, State> {
 
     return (
       <div className={searchScreen} style={{ marginBottom }}>
-        <TopNav>
-          <CenterText>
-            جستجو برای ....
-          </CenterText>
-        </TopNav>
         <SearchArea goTo={this.goTo} query={debouncedQuery} zoneId={parseInt(zoneId, 10)} />
         {this.renderInputs()}
       </div>

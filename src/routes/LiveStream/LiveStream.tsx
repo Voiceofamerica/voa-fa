@@ -9,13 +9,14 @@ import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage
 
 import { LiveStreamQuery } from 'helpers/graphql-types'
 import analytics, { AnalyticsProps } from 'helpers/analytics'
-import playMedia from 'redux-store/thunks/playMediaFromBlob'
+import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
 import AppState from 'types/AppState'
 
 import Loader from 'components/Loader'
 import ErrorBoundary from 'components/ErrorBoundary'
 import NotificationSwitch from 'containers/NotificationSwitch'
+import { liveStreamLabels } from 'labels'
 
 import * as Query from './LiveStream.graphql'
 import {
@@ -64,26 +65,11 @@ class LiveStreamBase extends React.Component<Props, State> {
     }))
   }
 
-  renderLoading () {
-    const { data } = this.props
-    if (!data.loading) {
-      return null
-    }
-
-    return (
-      <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', height: '100%', zIndex: 1 }}>
-        <div style={{ alignContent: 'center', fontSize: '10vw', backgroundColor: 'transparent', textAlign: 'center' }}>
-          装载...
-        </div>
-      </div>
-    )
-  }
-
   renderIconFromType = () => {
     return <i className={`mdi mdi-monitor ${imageIcon}`} />
   }
 
-  deviceSupportsNotifications () {
+  deviceSupportsNotifications = () => {
     if (typeof device === 'undefined') {
       return false
     }
@@ -113,7 +99,7 @@ class LiveStreamBase extends React.Component<Props, State> {
           {
             showSwitch
             ? <div className={toggleContent}>
-                <div className={toggleText}>Notify Me</div>
+                <div className={toggleText}>{liveStreamLabels.notifyMe}</div>
                 <div className={toggler}>
                   <NotificationSwitch notificationId={prog.id} title={prog.programTitle} time={moment(prog.date)} />
                 </div>
@@ -161,7 +147,6 @@ class LiveStreamBase extends React.Component<Props, State> {
       <div className={liveStream}>
         <Loader className={loadingText} data={this.props.data}>
           <ErrorBoundary>
-            {this.renderLoading()}
             {this.renderContent()}
           </ErrorBoundary>
         </Loader>
