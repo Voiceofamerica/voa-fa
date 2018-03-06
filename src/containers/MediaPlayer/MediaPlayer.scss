@@ -10,6 +10,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   background: transparent;
   transform: translateY(100vh);
   transition: transform 0.3s;
@@ -29,7 +30,7 @@
       z-index: $menu-z-max + 1;
     }
   }
-  
+
   .backgroundImage {
     position: absolute;
     top: 0;
@@ -67,12 +68,12 @@
     .defaultText {
       font-weight: bold;
     }
-    
+
     .hilight {
       color: $voa-blue;
     }
   }
-  
+
   &.open {
     transform: translateY(0);
   }
