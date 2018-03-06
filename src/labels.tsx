@@ -19,7 +19,7 @@ export const bottomNavLabels = {
 }
 
 export const breakingNewsLabels = {
-  header: 'Breaking News',
+  header: 'خبر فوری',
   noNews: 'اکنون خبر شکستن وجود ندارد',
 }
 
@@ -61,7 +61,7 @@ export const introLabels = {
 }
 
 export const liveStreamLabels = {
-  header: 'Live Stream',
+  header: 'پخش زنده ',
   notifyMe: 'Notify Me',
 }
 
@@ -115,7 +115,7 @@ export const searchLabels = {
 }
 
 export const settingsLabels = {
-  header: 'Settings',
+  header: 'تنظیمات من',
   panic: 'Reset the app',
 }
 
