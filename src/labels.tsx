@@ -51,7 +51,7 @@ export const favoritesSettingsLabels = {
 export const homeLabels = {
   headlines: 'Headlines',
   search: 'جستجو',
-  manage: 'Manage',
+  manage: '+',
 }
 
 export const introLabels = {
