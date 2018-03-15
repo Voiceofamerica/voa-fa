@@ -12,8 +12,10 @@ export const articleLabels = {
 
 export const bottomNavLabels = {
   home: 'Home',
+  editorsChoice: 'EC',
   breakingNews: 'Breaking',
   media: 'Media',
+  programs: 'Programs',
   liveStream: 'Live',
   settings: 'Me',
 }
