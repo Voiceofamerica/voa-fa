@@ -6,17 +6,16 @@ import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon/SvgIcon'
 
 import MainBottomNav from 'containers/MainBottomNav'
-import { bottomNavLabels } from 'labels'
 import { home, editorsChoice, audio, settings } from '../../svg'
 
-import { icon, iconText, iconActive } from './DefaultBottomNav.scss'
+import { icon, iconActive } from './DefaultBottomNav.scss'
 
 interface Props {
   history: History
 }
 
 const HOME_RGX = /^\/$/
-const BREAKING_NEWS_RGX = /^\/breakingNews/
+const EDITORS_CHOICE_RGX = /^\/editorsChoice/
 const LIVE_STREAM_RGX = /^\/liveStream/
 const SETTINGS_RGX = /^\/settings/
 
@@ -30,7 +29,7 @@ export default class DefaultBottomNav extends React.Component<Props> {
 
     const path = history.location.pathname
     const homeActive = HOME_RGX.test(path)
-    const editorsChoiceActive = BREAKING_NEWS_RGX.test(path)
+    const editorsChoiceActive = EDITORS_CHOICE_RGX.test(path)
 
     const homeIconClass = determineIconClass(homeActive)
     const editorsChoiceIconClass = determineIconClass(editorsChoiceActive)
@@ -38,11 +37,9 @@ export default class DefaultBottomNav extends React.Component<Props> {
     return [
       <IconItem key={0} active={homeActive} onClick={() => history.replace('/')}>
         <SvgIcon src={home} className={homeIconClass} />
-        <div className={iconText}>{bottomNavLabels.home}</div>
       </IconItem>,
-      <IconItem key={1} active={editorsChoiceActive} onClick={() => history.replace('/breakingNews')}>
+      <IconItem key={1} active={editorsChoiceActive} onClick={() => history.replace('/editorsChoice')}>
         <SvgIcon src={editorsChoice} className={editorsChoiceIconClass} />
-        <div className={iconText}>{bottomNavLabels.editorsChoice}</div>
       </IconItem>,
     ]
   }
@@ -60,11 +57,9 @@ export default class DefaultBottomNav extends React.Component<Props> {
     return [
       <IconItem key={0} active={liveStreamActive} onClick={() => history.replace('/liveStream')}>
         <SvgIcon src={audio} className={liveStreamIconClass} />
-        <div className={iconText}>{bottomNavLabels.liveStream}</div>
       </IconItem>,
       <IconItem key={1} active={settingsActive} onClick={() => history.replace('/settings')}>
         <SvgIcon src={settings} className={settingsIconClass} />
-        <div className={iconText}>{bottomNavLabels.settings}</div>
       </IconItem>,
     ]
   }
