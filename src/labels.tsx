@@ -25,6 +25,10 @@ export const breakingNewsLabels = {
   noNews: 'اکنون خبر شکستن وجود ندارد',
 }
 
+export const editorsChoiceLabels = {
+  header: 'انتخاب سردبیر',
+}
+
 export const categorySettingsLabels = {
   header: 'Categories',
   myCategories: 'My Categories',
