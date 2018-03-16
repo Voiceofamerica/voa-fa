@@ -9,6 +9,7 @@ import ArticleRoute from 'routes/ArticleRoute'
 import Settings from 'routes/Settings'
 import LiveStream from 'routes/LiveStream'
 import BreakingNews from 'routes/BreakingNews'
+import EditorsChoice from 'routes/EditorsChoice'
 import CategorySettings from 'routes/CategorySettings'
 import MediaSettings from 'routes/MediaSettings'
 import Search from 'routes/Search'
@@ -21,6 +22,7 @@ import {
   settingsLabels,
   liveStreamLabels,
   breakingNewsLabels,
+  editorsChoiceLabels,
   favoritesSettingsLabels,
   notificationSettingsLabels,
   textSettingsLabels,
@@ -47,6 +49,7 @@ export default () => (
       <HeadingLayout path='/settings' component={Settings} heading={settingsLabels.header} />
       <HeadingLayout path='/liveStream' component={LiveStream} heading={liveStreamLabels.header} />
       <HeadingLayout path='/breakingNews' component={BreakingNews} heading={breakingNewsLabels.header} />
+      <HeadingLayout path='/editorsChoice' component={EditorsChoice} heading={editorsChoiceLabels.header} />
       <MainLayout path='/articles/:category' component={CategoryRoute}/>
       <MainLayout path='/' component={HomeRoute}/>
     </Switch>
