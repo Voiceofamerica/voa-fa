@@ -156,6 +156,38 @@ export type LiveStreamQuery = {
   } | null > | null,
 };
 
+export type ProgramClipsQuery = {
+  content:  Array< {
+    id: number,
+    title: string,
+    introduction: string,
+    pubDate: string,
+    audio:  {
+      url: string | null,
+    } | null,
+    image:  {
+      url: string,
+    } | null,
+  } | null > | null,
+};
+
+export type ProgramGalleriesQuery = {
+  content:  Array< {
+    id: number,
+    title: string,
+    introduction: string,
+    pubDate: string,
+    photoGallery:  Array< {
+      photo:  Array< {
+        id: number | null,
+      } | null > | null,
+    } | null > | null,
+    image:  {
+      url: string,
+    } | null,
+  } | null > | null,
+};
+
 export type SearchQueryVariables = {
   query: string,
   zoneId?: number | null,

@@ -1,0 +1,14 @@
+query ProgramClips {
+  content(source: fa, type: [Clip]) {
+    id
+    title
+    introduction
+    pubDate
+    audio {
+      url
+    }
+    image {
+      url
+    }
+  }
+}
