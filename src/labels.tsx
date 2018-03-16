@@ -26,7 +26,7 @@ export const breakingNewsLabels = {
 }
 
 export const editorsChoiceLabels = {
-  header: 'Editor\'s Choice',
+  header: 'انتخاب سردبیر',
 }
 
 export const categorySettingsLabels = {
