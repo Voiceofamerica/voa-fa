@@ -18,10 +18,11 @@ start().then(() => {
   const afsm = (window as any).AndroidFullScreen
   afsm && afsm.immersiveMode()
 
-  let render = Component => {
+  let render = (Component, cb?) => {
     ReactDOM.render(
       <Component />,
       rootElement,
+      cb,
     )
   }
   if (module.hot) {
@@ -40,7 +41,14 @@ start().then(() => {
     })
   }
 
-  render(App)
+  render(App, () => {
+    setTimeout(() => {
+      const splash = (navigator as any).splashscreen
+      if (splash) {
+        splash.hide()
+      }
+    }, 3000)
+  })
 }).catch(console.error)
 
 document.addEventListener(
