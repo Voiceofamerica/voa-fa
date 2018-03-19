@@ -15,9 +15,6 @@ const rootElement = document.getElementById('app')
 moment.locale('fa')
 
 start().then(() => {
-  const afsm = (window as any).AndroidFullScreen
-  afsm && afsm.immersiveMode()
-
   let render = (Component, cb?) => {
     ReactDOM.render(
       <Component />,
