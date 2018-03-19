@@ -130,7 +130,7 @@ class ProgramsScreen extends React.Component<Props> {
 
   setZoneId = (zoneId: number) => {
     const { history, match } = this.props
-    const { type } = match.params
+    const { type = VIDEO } = match.params
     history.replace(`/programs/${type}/${zoneId}`)
   }
 
