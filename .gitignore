@@ -70,3 +70,5 @@ src/psiphon_config.json
 static/ADBMobileConfig.json
 
 !**/.gitkeep
+
+icon.png
