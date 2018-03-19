@@ -1,9 +1,9 @@
 
 import * as React from 'react'
 
-export const graphqlLanguage = 'zhcn'
+export const graphqlLanguage = 'fa'
 
-export const momentLocale = 'zh-cn'
+export const momentLocale = 'fa'
 
 export const articleLabels = {
   updatedOn: (date: string) => `Updated on ${date}`,
