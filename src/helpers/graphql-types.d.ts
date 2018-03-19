@@ -119,6 +119,29 @@ export type CategorySettingsQuery = {
   } | null > | null,
 };
 
+export type EditorsChoiceRouteQuery = {
+  content:  Array< {
+    id: number,
+    title: string,
+    introduction: string,
+    pubDate: string,
+    image:  {
+      url: string,
+    } | null,
+    video:  {
+      url: string | null,
+    } | null,
+    audio:  {
+      url: string | null,
+    } | null,
+    photoGallery:  Array< {
+      photo:  Array< {
+        id: number | null,
+      } | null > | null,
+    } | null > | null,
+  } | null > | null,
+};
+
 export type HomeRouteQuery = {
   content:  Array< {
     id: number,
@@ -185,6 +208,24 @@ export type ProgramGalleriesQuery = {
     image:  {
       url: string,
     } | null,
+  } | null > | null,
+};
+
+export type ProgramVideosQueryVariables = {
+  zone?: number | null,
+};
+
+export type ProgramVideosQuery = {
+  program:  Array< {
+    id: number,
+    date: string | null,
+    timeLeft: number | null,
+    programTitle: string | null,
+    programDescription: string | null,
+    image:  {
+      url: string,
+    } | null,
+    url: string | null,
   } | null > | null,
 };
 

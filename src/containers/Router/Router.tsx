@@ -52,6 +52,8 @@ export default () => (
       <HeadingLayout path='/liveStream' component={LiveStream} heading={liveStreamLabels.header} />
       <HeadingLayout path='/breakingNews' component={BreakingNews} heading={breakingNewsLabels.header} />
       <HeadingLayout path='/editorsChoice' component={EditorsChoice} heading={editorsChoiceLabels.header} />
+      <BottomOnlyLayout path='/programs/:type/:zone' component={ProgramsScreen} />
+      <BottomOnlyLayout path='/programs/:type' component={ProgramsScreen} />
       <BottomOnlyLayout path='/programs' component={ProgramsScreen} />
       <MainLayout path='/articles/:category' component={CategoryRoute}/>
       <MainLayout path='/' component={HomeRoute}/>
