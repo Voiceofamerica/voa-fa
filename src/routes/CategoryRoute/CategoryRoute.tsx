@@ -17,6 +17,7 @@ import * as Query from './CategoryRoute.graphql'
 import { CategoryRouteQuery, CategoryRouteQueryVariables } from 'helpers/graphql-types'
 import analytics, { AnalyticsProps } from 'helpers/analytics'
 import { mapImageUrl } from 'helpers/image'
+import { truncateTitleText } from 'helpers/truncation'
 import { homeLabels } from 'labels'
 
 export interface Params {
@@ -80,16 +81,17 @@ class HomeRouteBase extends React.Component<Props, State> {
     }
 
     const blurb = content[0]
+    const icon = this.renderIcon(blurb)
+    const hasIcon = icon !== null ? true : false
 
     return (
       <div className={row} style={{ marginBottom: '1.5vw' }}>
         <Card
           onPress={() => this.goToArticle(blurb.id)}
-          icon={this.renderIcon(blurb)}
-          title={blurb.title}
+          icon={icon}
+          title={truncateTitleText(blurb.title, hasIcon)}
           minorText={moment(blurb.pubDate).format('lll')}
           imageUrl={blurb.image && blurb.image.url}
-          factor={1}
         />
       </div>
     )
@@ -112,7 +114,6 @@ class HomeRouteBase extends React.Component<Props, State> {
               onPress={() => this.goToArticle(blurb.id)}
               title={<span>{this.renderIcon(blurb)} {blurb.title}</span>}
               imageUrl={blurb.image && blurb.image.url}
-              factor={2}
             />
           ))
         }

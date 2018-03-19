@@ -77,7 +77,6 @@ class EditorsChoiceBase extends React.Component<Props, State> {
           title={truncateTitleText(blurb.title, hasIcon)}
           minorText={moment(blurb.pubDate).format('lll')}
           imageUrl={blurb.image && blurb.image.url}
-          factor={1}
         />
       </div>
     )
@@ -99,7 +98,6 @@ class EditorsChoiceBase extends React.Component<Props, State> {
               onPress={() => this.goToArticle(blurb.id)}
               title={<span>{this.renderIcon(blurb)} {blurb.title}</span>}
               imageUrl={blurb.image && blurb.image.url}
-              factor={2}
             />
           ))
         }
