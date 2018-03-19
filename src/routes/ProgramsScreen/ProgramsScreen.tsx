@@ -3,6 +3,8 @@ import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 // import { programsScreenLabels } from 'labels'
 
+import ErrorBoundary from 'components/ErrorBoundary'
+
 import ClipPrograms from './ClipPrograms'
 import GalleriesPrograms from './GalleriesPrograms'
 import { programsScreen, programTypeNav, typeItem, active } from './ProgramsScreen.scss'
@@ -58,8 +60,10 @@ class ProgramsScreen extends React.Component<Props, State> {
   render () {
     return (
       <div className={programsScreen}>
-        {this.renderPrograms()}
-        {this.renderProgramTypes()}
+        <ErrorBoundary>
+          {this.renderPrograms()}
+          {this.renderProgramTypes()}
+        </ErrorBoundary>
       </div>
     )
   }

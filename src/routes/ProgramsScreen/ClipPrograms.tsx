@@ -7,6 +7,8 @@ import { graphql, ChildProps } from 'react-apollo'
 import TopNav, { TopNavItem } from '@voiceofamerica/voa-shared/components/TopNav'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
+import Loader from 'components/Loader'
+
 // import { programsScreenLabels } from 'labels'
 import { ProgramClipsQuery } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
@@ -32,10 +34,6 @@ class ClipPrograms extends React.Component<Props> {
   render () {
     const { data } = this.props
 
-    if (!data || !data.content) {
-      return <div style={{flex: 1}} />
-    }
-
     return (
       <div className={programContent}>
         <TopNav>
@@ -49,18 +47,20 @@ class ClipPrograms extends React.Component<Props> {
             +
           </TopNavItem>
         </TopNav>
-        {
-          data.content.map(item => (
-            <div key={item.id}>
-              <Ticket
-                onPress={() => this.goToArticle(item.id)}
-                title={item.title}
-                imageUrl={item.image && item.image.url}
-                minorText={moment(item.pubDate).format('lll')}
-              />
-            </div>
-          ))
-        }
+        <Loader data={data}>
+          {
+            data.content && data.content.map(item => (
+              <div key={item.id}>
+                <Ticket
+                  onPress={() => this.goToArticle(item.id)}
+                  title={item.title}
+                  imageUrl={item.image && item.image.url}
+                  minorText={moment(item.pubDate).format('lll')}
+                />
+              </div>
+            ))
+          }
+        </Loader>
       </div>
     )
   }
