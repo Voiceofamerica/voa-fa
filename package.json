@@ -53,7 +53,7 @@
     "@types/redux-persist": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
     "@types/webpack-env": "^1.13.2",
-    "@voiceofamerica/voa-core-shared": "^1.48.0",
+    "@voiceofamerica/voa-core-shared": "^1.49.0",
     "@voiceofamerica/voa-shared": "^1.14.53",
     "adobe-mobile-services": "^4.13.1-cor",
     "android-versions": "^1.2.1",

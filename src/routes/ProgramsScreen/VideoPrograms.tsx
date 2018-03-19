@@ -2,24 +2,27 @@
 import * as React from 'react'
 import { History } from 'history'
 import * as moment from 'moment'
-import { graphql, ChildProps } from 'react-apollo'
+import { match } from 'react-router'
+import { graphql, ChildProps, QueryOpts } from 'react-apollo'
 
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import Loader from 'components/Loader'
 
 // import { programsScreenLabels } from 'labels'
-import { ProgramClipsQuery } from 'helpers/graphql-types'
+import { ProgramVideosQuery, ProgramVideosQueryVariables } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
-import * as Query from './Clips.graphql'
 
+import Params from './Params'
+import * as Query from './Videos.graphql'
 import { programContent } from './ProgramsScreen.scss'
 
 interface OwnProps {
   history: History
+  match: match<Params>
 }
 
-type Props = ChildProps<OwnProps, ProgramClipsQuery>
+type Props = ChildProps<OwnProps, ProgramVideosQuery>
 
 class ClipPrograms extends React.Component<Props> {
   goTo (route: string) {
@@ -27,9 +30,11 @@ class ClipPrograms extends React.Component<Props> {
     history.push(route)
   }
 
-  goToArticle (id: number) {
-    this.goTo(`/article/${id}`)
+  playVideo (url: string) {
+    console.log(url)
+    // this.goTo(`/article/${id}`)
   }
+
   render () {
     const { data } = this.props
 
@@ -37,13 +42,13 @@ class ClipPrograms extends React.Component<Props> {
       <div className={programContent}>
         <Loader data={data}>
           {
-            data.content && data.content.map(item => (
+            data.program && data.program.map(item => (
               <div key={item.id}>
                 <Ticket
-                  onPress={() => this.goToArticle(item.id)}
-                  title={item.title}
+                  onPress={() => this.playVideo(item.url)}
+                  title={item.programTitle}
                   imageUrl={item.image && item.image.url}
-                  minorText={moment(item.pubDate).format('lll')}
+                  minorText={moment(item.date).format('lll')}
                 />
               </div>
             ))
@@ -54,12 +59,12 @@ class ClipPrograms extends React.Component<Props> {
   }
 }
 
-const withQuery = graphql<ProgramClipsQuery, OwnProps>(
+const withQuery = graphql<ProgramVideosQuery, OwnProps>(
   Query,
   {
     props: ({ data }) => {
       if (!data.loading && !data.error) {
-        data.content = data.content.filter(c => c).map(c => {
+        data.program = data.program.filter(c => c && c.url).map(c => {
           return {
             ...c,
             image: c.image && {
@@ -72,9 +77,12 @@ const withQuery = graphql<ProgramClipsQuery, OwnProps>(
 
       return { data }
     },
-    options: {
+    options: (ownProps: OwnProps): QueryOpts<ProgramVideosQueryVariables> => ({
+      variables: {
+        zone: parseInt(ownProps.match.params.zone || '0', 10),
+      },
       fetchPolicy: 'cache-first',
-    },
+    }),
   },
 )
 

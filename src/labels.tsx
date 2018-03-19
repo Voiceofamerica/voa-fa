@@ -7,17 +7,7 @@ export const momentLocale = 'zh-cn'
 
 export const articleLabels = {
   updatedOn: (date: string) => `Updated on ${date}`,
-  relatedContent: 'Related',
-}
-
-export const bottomNavLabels = {
-  home: 'Home',
-  editorsChoice: 'EC',
-  breakingNews: 'Breaking',
-  media: 'Media',
-  programs: 'Programs',
-  liveStream: 'Live',
-  settings: 'Me',
+  relatedContent: 'مطالب مرتبط',
 }
 
 export const breakingNewsLabels = {
@@ -30,10 +20,10 @@ export const editorsChoiceLabels = {
 }
 
 export const categorySettingsLabels = {
-  header: 'Categories',
-  myCategories: 'My Categories',
-  allCategories: 'All Categories',
-  dragAndDrop: 'Drag and drop to reorder',
+  header: 'مدیریت موضوعات',
+  myCategories: 'موضوعات من',
+  allCategories: 'همه موضوع‌ها',
+  dragAndDrop: 'لطفا موضوع‌تان را به اینجا بکشید',
 }
 
 export const circumventionDrawerLabels = {
@@ -50,25 +40,25 @@ export const errorBoundaryLabels = {
 }
 
 export const favoritesSettingsLabels = {
-  header: 'Favorites',
+  header: 'موردعلاقه',
   removeAll: 'Remove All',
 }
 
 export const homeLabels = {
-  headlines: 'Headlines',
+  headlines: 'سرخط خبرها',
   search: 'جستجو',
   manage: '+',
 }
 
 export const introLabels = {
   heading: 'Welcome to VoA!',
-  content: 'This is a newsreader',
+  content: 'به صدای آمریکا خوش آمدید',
   continue: 'Continue',
 }
 
 export const liveStreamLabels = {
   header: 'پخش زنده ',
-  notifyMe: 'Notify Me',
+  notifyMe: 'پخش زنده خبر',
 }
 
 export const mediaPlayerLabels = {
@@ -82,16 +72,16 @@ export const mediaPlayerLabels = {
 }
 
 export const mediaSettingsLabels = {
-  header: 'Media',
-  normalSpeed: 'Normal',
+  header: 'تنظیم‌های ویدپو',
+  normalSpeed: '1x',
   halfAgainSpeed: '1.5x',
   doubleSpeed: '2x',
-  chooseSpeed: 'Choose Speed',
+  chooseSpeed: 'گزینه پخش دوباره',
 }
 
 export const notificationSettingsLabels = {
-  header: 'Notifications',
-  dailyToggle: 'Daily Reminder',
+  header: 'تنظیم‌های آگاه‌سازی',
+  dailyToggle: 'یادآوری روزانه',
 }
 
 export const pullToRefreshLabels = {
@@ -109,13 +99,13 @@ export const searchLabels = {
 
 export const settingsLabels = {
   header: 'تنظیمات من',
-  panic: 'Reset the app',
+  panic: 'این اپ را حذف کن',
 }
 
 export const textSettingsLabels = {
-  header: 'Text Settings',
-  chooseSize: 'Article Text Size',
-  normalSize: '1x',
-  largeSize: '1.5x',
-  hugeSize: '2x',
+  header: 'تنظیم‌های متن',
+  chooseSize: 'تنظیم اندازه فونت',
+  normalSize: 'کوچک',
+  largeSize: 'متوسط',
+  hugeSize: 'بزرگ',
 }
