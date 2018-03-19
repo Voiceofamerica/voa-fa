@@ -2,11 +2,11 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import TopNav, { TopNavItem } from '@voiceofamerica/voa-shared/components/TopNav'
-// import { programsScreenLabels } from 'labels'
 
 import analytics, { AnalyticsProps } from 'helpers/analytics'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Category from 'types/Category'
+import { programsScreenLabels } from 'labels'
 
 import Params from './Params'
 import ClipPrograms from './ClipPrograms'
@@ -23,7 +23,7 @@ const VIDEO: ProgramType = 'video'
 const PROGRAM_ZONES: Category[] = [
   {
     id: 0,
-    name: 'All',
+    name: programsScreenLabels.all,
   },
   {
     id: 1565,
@@ -152,10 +152,10 @@ class ProgramsScreen extends React.Component<Props> {
     return (
       <div className={programTypeNav}>
         <div className={type === VIDEO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(VIDEO)}>
-          Video
+          {programsScreenLabels.videos}
         </div>
         <div className={type === CLIP ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(CLIP)}>
-          Clip
+          {programsScreenLabels.audio}
         </div>
       </div>
     )

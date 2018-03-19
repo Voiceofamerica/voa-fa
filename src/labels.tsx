@@ -84,6 +84,12 @@ export const notificationSettingsLabels = {
   dailyToggle: 'یادآوری روزانه',
 }
 
+export const programsScreenLabels = {
+  videos: 'ویدئوی انتخابی',
+  audio: 'برنامه شنیداری',
+  all: 'All',
+}
+
 export const pullToRefreshLabels = {
   pull: 'بارگذاری مجدد',
   release: 'بارگذاری مجدد',
