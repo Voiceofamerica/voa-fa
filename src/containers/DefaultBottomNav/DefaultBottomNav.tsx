@@ -16,7 +16,7 @@ interface Props {
 
 const HOME_RGX = /^\/$/
 const EDITORS_CHOICE_RGX = /^\/editorsChoice/
-const LIVE_STREAM_RGX = /^\/liveStream/
+const PROGRAMS_RGX = /^\/programs/
 const SETTINGS_RGX = /^\/settings/
 
 function determineIconClass (isActive: boolean) {
@@ -48,15 +48,15 @@ export default class DefaultBottomNav extends React.Component<Props> {
     const { history } = this.props
 
     const path = history.location.pathname
-    const liveStreamActive = LIVE_STREAM_RGX.test(path)
+    const programsActive = PROGRAMS_RGX.test(path)
     const settingsActive = SETTINGS_RGX.test(path)
 
-    const liveStreamIconClass = determineIconClass(liveStreamActive)
+    const programsIconClass = determineIconClass(programsActive)
     const settingsIconClass = determineIconClass(settingsActive)
 
     return [
-      <IconItem key={0} active={liveStreamActive} onClick={() => history.replace('/liveStream')}>
-        <SvgIcon src={audio} className={liveStreamIconClass} />
+      <IconItem key={0} active={programsActive} onClick={() => history.replace('/programs')}>
+        <SvgIcon src={audio} className={programsIconClass} />
       </IconItem>,
       <IconItem key={1} active={settingsActive} onClick={() => history.replace('/settings')}>
         <SvgIcon src={settings} className={settingsIconClass} />

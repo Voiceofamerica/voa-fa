@@ -1,0 +1,16 @@
+query ProgramGalleries {
+  content(source: fa, type: [PhotoGallery]) {
+    id
+    title
+    introduction
+    pubDate
+    photoGallery {
+      photo {
+        id
+      }
+    }
+    image {
+      url
+    }
+  }
+}

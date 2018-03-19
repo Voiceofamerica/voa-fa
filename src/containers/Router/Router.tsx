@@ -16,6 +16,7 @@ import Search from 'routes/Search'
 import FavoritesSettings from 'routes/FavoritesSettings'
 import NotificationSettings from 'routes/NotificationSettings'
 import TextSettings from 'routes/TextSettings'
+import ProgramsScreen from 'routes/ProgramsScreen'
 
 import {
   searchLabels,
@@ -28,6 +29,7 @@ import {
   textSettingsLabels,
 } from 'labels'
 
+import BottomOnlyLayout from './layouts/BottomOnlyLayout'
 import HeadingLayout from './layouts/HeadingLayout'
 import HeadingOnlyLayout from './layouts/HeadingOnlyLayout'
 import MainLayout from './layouts/MainLayout'
@@ -50,6 +52,7 @@ export default () => (
       <HeadingLayout path='/liveStream' component={LiveStream} heading={liveStreamLabels.header} />
       <HeadingLayout path='/breakingNews' component={BreakingNews} heading={breakingNewsLabels.header} />
       <HeadingLayout path='/editorsChoice' component={EditorsChoice} heading={editorsChoiceLabels.header} />
+      <BottomOnlyLayout path='/programs' component={ProgramsScreen} />
       <MainLayout path='/articles/:category' component={CategoryRoute}/>
       <MainLayout path='/' component={HomeRoute}/>
     </Switch>
