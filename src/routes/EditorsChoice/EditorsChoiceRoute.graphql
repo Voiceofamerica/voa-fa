@@ -1,5 +1,5 @@
 query EditorsChoiceRoute {
-  content(source: fa, type: [Article, Video, PhotoGallery, Clip]) {
+  content(source: fa, type: [Article, Video, PhotoGallery, Clip], zoneId: 5406) {
     id
     title
     introduction
