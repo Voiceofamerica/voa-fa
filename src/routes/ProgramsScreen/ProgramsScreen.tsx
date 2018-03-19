@@ -10,14 +10,13 @@ import { programsScreenLabels } from 'labels'
 
 import Params from './Params'
 import ClipPrograms from './ClipPrograms'
-import GalleriesPrograms from './GalleriesPrograms'
 import VideoPrograms from './VideoPrograms'
 import { programsScreen, programTypeNav, typeItem, active } from './ProgramsScreen.scss'
 
 type ProgramType = 'clip' | 'gallery' | 'video'
 
 const CLIP: ProgramType = 'clip'
-const GALLERY: ProgramType = 'gallery'
+// const GALLERY: ProgramType = 'gallery'
 const VIDEO: ProgramType = 'video'
 
 const PROGRAM_ZONES: Category[] = [
@@ -53,10 +52,10 @@ const PROGRAM_ZONES: Category[] = [
     id: 1868,
     name: 'صفحه آخر',
   },
-  // { inside_usa - no zone id found
-  //   id: 0,
-  //   name: 'سيمای آمريکا',
-  // },
+  {
+    id: 1573,
+    name: 'سيمای آمریکا',
+  },
   {
     id: 4070,
     name: 'تاپ تن',
@@ -109,6 +108,9 @@ const PROGRAM_ZONES: Category[] = [
     id: 5024,
     name: 'برش هایی از صفحه آخر',
   },
+  // 5398 - با گرتا ون ساسترن - With Greta Van Sisteren
+  // 4547 - گزارش هفته - Weekly report
+  // Strange (mpd) - 166645
 ]
 
 interface Props extends RouteComponentProps<Params>, AnalyticsProps {
@@ -137,8 +139,6 @@ class ProgramsScreen extends React.Component<Props> {
     const { type = VIDEO } = match.params
     if (type === CLIP) {
       return <ClipPrograms history={history} />
-    } else if (type === GALLERY) {
-      return <GalleriesPrograms history={history} />
     } else if (type === VIDEO) {
       return <VideoPrograms history={history} match={match} />
     } else {
@@ -154,9 +154,11 @@ class ProgramsScreen extends React.Component<Props> {
         <div className={type === VIDEO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(VIDEO)}>
           {programsScreenLabels.videos}
         </div>
-        <div className={type === CLIP ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(CLIP)}>
-          {programsScreenLabels.audio}
-        </div>
+        {
+        // <div className={type === CLIP ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(CLIP)}>
+        //   {programsScreenLabels.audio}
+        // </div>
+        }
       </div>
     )
   }
@@ -172,6 +174,7 @@ class ProgramsScreen extends React.Component<Props> {
 
             return (
               <TopNavItem
+                key={id}
                 selected={selected}
                 onClick={() => this.setZoneId(id)}
               >
@@ -192,7 +195,6 @@ class ProgramsScreen extends React.Component<Props> {
         <ErrorBoundary>
           {this.renderPrograms()}
         </ErrorBoundary>
-        {this.renderProgramTypes()}
       </div>
     )
   }
