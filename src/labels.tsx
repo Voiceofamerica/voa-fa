@@ -42,7 +42,7 @@ export const errorBoundaryLabels = {
 
 export const favoritesSettingsLabels = {
   header: 'موردعلاقه',
-  removeAll: 'Remove All',
+  removeAll: 'حذف همه',
 }
 
 export const homeLabels = {
@@ -88,7 +88,7 @@ export const notificationSettingsLabels = {
 export const programsScreenLabels = {
   videos: 'ویدئوی انتخابی',
   audio: 'برنامه شنیداری',
-  all: 'All',
+  all: 'تلويزيون',
 }
 
 export const pullToRefreshLabels = {
