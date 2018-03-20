@@ -310,7 +310,7 @@ class ArticleRouteBase extends React.Component<Props> {
       <div>
         {
           article.photoGallery.map(gal => (
-            <div key={gal.id} className={gallery}>
+            <div key={gal.id} className={gallery} dir='ltr'>
               <Carousel dots>
                 {
                   gal.photo.slice().sort((a, b) => a.order - b.order).map(photo => (
@@ -319,7 +319,7 @@ class ArticleRouteBase extends React.Component<Props> {
                         <ResilientImage src={photo.url} className={photoItem} contain />
                       </div>
                       <div className={photoTextContainer}>
-                        <div className={photoText}>
+                        <div className={photoText} dir='rtl'>
                           <div className={photoTitle}>
                             {photo.photoTitle}
                           </div>
