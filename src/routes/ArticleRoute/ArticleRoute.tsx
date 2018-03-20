@@ -312,17 +312,18 @@ class ArticleRouteBase extends React.Component<Props> {
       <div>
         {
           article.photoGallery.map(gal => {
+            const sorted = gal.photo.slice().sort((a, b) => a.order - b.order)
             const customPaging = (i) => (
               <a>
-                <img src={gal.photo[i].url} className={thumb} />
+                <img src={sorted[sorted.length - i - 1].url} className={thumb} />
               </a>
             )
 
             return (
               <div key={gal.id} className={gallery} dir='ltr'>
-                <Carousel dots rtl dotsClass={galleryDots} customPaging={customPaging}>
+                <Carousel dots dotsClass={galleryDots} customPaging={customPaging}>
                   {
-                    gal.photo.slice().sort((a, b) => a.order - b.order).map(photo => (
+                    sorted.map(photo => (
                       <div key={photo.id} className={photoContent}>
                         <div className={photoContainer}>
                           <ResilientImage src={photo.url} className={photoItem} contain />
