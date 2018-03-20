@@ -1,13 +1,16 @@
 
 import * as React from 'react'
+import { compose } from 'redux'
 import { History } from 'history'
 import * as moment from 'moment'
 import { match } from 'react-router'
 import { graphql, ChildProps, QueryOpts } from 'react-apollo'
+import { connect, Dispatch } from 'react-redux'
 
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import Loader from 'components/Loader'
+import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
 // import { programsScreenLabels } from 'labels'
 import { ProgramVideosQuery, ProgramVideosQueryVariables } from 'helpers/graphql-types'
@@ -22,7 +25,11 @@ interface OwnProps {
   match: match<Params>
 }
 
-type Props = ChildProps<OwnProps, ProgramVideosQuery>
+interface DispatchProps {
+  playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, isVideo: boolean) => void
+}
+
+type Props = ChildProps<OwnProps, ProgramVideosQuery> & DispatchProps
 
 class ClipPrograms extends React.Component<Props> {
   goTo (route: string) {
@@ -30,9 +37,13 @@ class ClipPrograms extends React.Component<Props> {
     history.push(route)
   }
 
-  playVideo (url: string) {
-    console.log(url)
-    // this.goTo(`/article/${id}`)
+  playVideo (item: ProgramVideosQuery['program'][0]) {
+    this.props.playMedia(
+      item.url,
+      item.programTitle,
+      item.programDescription,
+      true,
+    )
   }
 
   render () {
@@ -45,7 +56,7 @@ class ClipPrograms extends React.Component<Props> {
             data.program && data.program.map(item => (
               <div key={item.id}>
                 <Ticket
-                  onPress={() => this.playVideo(item.url)}
+                  onPress={() => this.playVideo(item)}
                   title={item.programTitle}
                   imageUrl={item.image && item.image.url}
                   minorText={moment(item.date).format('lll')}
@@ -86,4 +97,16 @@ const withQuery = graphql<ProgramVideosQuery, OwnProps>(
   },
 )
 
-export default withQuery(ClipPrograms)
+const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => {
+  return {
+    playMedia: (mediaUrl, mediaTitle, mediaDescription, isVideo) =>
+      dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, isVideo })),
+  }
+}
+
+const withRedux = connect(null, mapDispatchToProps)
+
+export default compose(
+  withQuery,
+  withRedux,
+)(ClipPrograms)
