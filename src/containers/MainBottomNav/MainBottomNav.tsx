@@ -4,7 +4,7 @@ import { connect, Dispatch } from 'react-redux'
 
 import BottomNav, { RoundItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
-import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon/SvgIcon'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
 import toggleMediaDrawer from 'redux-store/actions/toggleMediaDrawer'
 import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'

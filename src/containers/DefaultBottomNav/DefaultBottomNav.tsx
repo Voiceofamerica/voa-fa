@@ -3,7 +3,7 @@ import * as React from 'react'
 import { History } from 'history'
 
 import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
-import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon/SvgIcon'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
 import MainBottomNav from 'containers/MainBottomNav'
 import { home, editorsChoice, audio, settings } from '../../svg'

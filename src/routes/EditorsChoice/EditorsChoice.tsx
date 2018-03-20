@@ -7,10 +7,11 @@ import * as moment from 'moment'
 import Card from '@voiceofamerica/voa-shared/components/Card'
 import SecondaryCard from '@voiceofamerica/voa-shared/components/SecondaryCard'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
-import { editorsChoice, row, content, searchButton, ticketIcon } from './EditorsChoice.scss'
+import { editorsChoice, row, content, searchButton, iconCircle } from './EditorsChoice.scss'
 import * as Query from './EditorsChoiceRoute.graphql'
-import { HomeRouteQuery } from 'helpers/graphql-types'
+import { EditorsChoiceRouteQuery } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
 import { truncateTitleText } from 'helpers/truncation'
 import analytics, { AnalyticsProps } from 'helpers/analytics'
@@ -19,7 +20,7 @@ import Loader from 'components/Loader'
 import PullToRefresh from 'components/PullToRefresh'
 import { homeLabels } from 'labels'
 
-type QueryProps = ChildProps<RouteComponentProps<void>, HomeRouteQuery>
+type QueryProps = ChildProps<RouteComponentProps<void>, EditorsChoiceRouteQuery>
 
 type Props = QueryProps & AnalyticsProps
 
@@ -43,16 +44,27 @@ class EditorsChoiceBase extends React.Component<Props, State> {
     this.goTo('/settings')
   }
 
-  renderIcon = (blurb: HomeRouteQuery['content'][0], className?: string) => {
+  renderIcon = (blurb: EditorsChoiceRouteQuery['content'][0]) => {
     if (blurb.video && blurb.video.url) {
-      return <i className={`mdi mdi-monitor ${className}`} />
+      return <SvgIcon src={require('svg/video.svg')} />
     } else if (blurb.audio && blurb.audio.url) {
-      return <i className={`mdi mdi-headphones ${className}`} />
+      return <SvgIcon src={require('svg/audio.svg')} />
     } else if (blurb.photoGallery && blurb.photoGallery.length > 0) {
-      const { photoGallery } = blurb
-      const countNumber = photoGallery.reduce((total, gallery) => total + gallery.photo.length, 0)
-      const count = countNumber < 9 ? `${countNumber}` : '9-plus'
-      return <i className={`mdi mdi-numeric-${count}-box-multiple-outline ${className}`} />
+      return <SvgIcon src={require('svg/gallery.svg')} />
+    } else {
+      return null
+    }
+  }
+
+  renderIconWithCircle = (blurb: EditorsChoiceRouteQuery['content'][0]) => {
+    const icon = this.renderIcon(blurb)
+
+    if (icon) {
+      return (
+        <div className={iconCircle}>
+          {this.renderIcon(blurb)}
+        </div>
+      )
     } else {
       return null
     }
@@ -121,7 +133,7 @@ class EditorsChoiceBase extends React.Component<Props, State> {
             title={blurb.title}
             minorText={moment(blurb.pubDate).format('lll')}
             imageUrl={blurb.image && blurb.image.url}
-            icon={this.renderIcon(blurb, ticketIcon)}
+            icon={this.renderIconWithCircle(blurb)}
           />
         </div>
       ))
@@ -176,7 +188,7 @@ const withEditorsChoiceQuery = graphql(
   Query,
   {
     props: ({ data }) => {
-      let outputData = data as (typeof data) & HomeRouteQuery
+      let outputData = data as (typeof data) & EditorsChoiceRouteQuery
       if (!data.loading && !data.error) {
         outputData.content = outputData.content.filter(c => c).map(c => {
           return {

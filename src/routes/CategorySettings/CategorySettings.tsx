@@ -7,7 +7,7 @@ import { DragDropContext } from 'react-dnd'
 import TouchBackend from 'react-dnd-touch-backend'
 
 import BottomNav, { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
-import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon/SvgIcon'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
 import setCategoryOrder from 'redux-store/actions/setCategoryOrder'
 import AppState from 'types/AppState'

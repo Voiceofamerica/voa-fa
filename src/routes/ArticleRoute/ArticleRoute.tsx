@@ -10,7 +10,7 @@ import * as moment from 'moment'
 
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
 import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
-import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon/SvgIcon'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import { ArticleRouteQuery, ArticleRouteQueryVariables } from 'helpers/graphql-types'

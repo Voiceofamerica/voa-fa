@@ -8,11 +8,12 @@ import * as moment from 'moment'
 import Card from '@voiceofamerica/voa-shared/components/Card'
 import SecondaryCard from '@voiceofamerica/voa-shared/components/SecondaryCard'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
+import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
 import Loader from 'components/Loader'
 import PullToRefresh from 'components/PullToRefresh'
 
-import { homeRoute, row, content, searchButton, ticketIcon } from './CategoryRoute.scss'
+import { homeRoute, row, content, searchButton, iconCircle } from './CategoryRoute.scss'
 import * as Query from './CategoryRoute.graphql'
 import { CategoryRouteQuery, CategoryRouteQueryVariables } from 'helpers/graphql-types'
 import analytics, { AnalyticsProps } from 'helpers/analytics'
@@ -57,16 +58,27 @@ class HomeRouteBase extends React.Component<Props, State> {
     }
   }
 
-  renderIcon = (blurb: CategoryRouteQuery['content'][0], className?: string) => {
+  renderIcon = (blurb: CategoryRouteQuery['content'][0]) => {
     if (blurb.video && blurb.video.url) {
-      return <i className={`mdi mdi-monitor ${className}`} />
+      return <SvgIcon src={require('svg/video.svg')} />
     } else if (blurb.audio && blurb.audio.url) {
-      return <i className={`mdi mdi-headphones ${className}`} />
+      return <SvgIcon src={require('svg/audio.svg')} />
     } else if (blurb.photoGallery && blurb.photoGallery.length > 0) {
-      const { photoGallery } = blurb
-      const countNumber = photoGallery.reduce((total, gallery) => total + gallery.photo.length, 0)
-      const count = countNumber < 9 ? `${countNumber}` : '9-plus'
-      return <i className={`mdi mdi-numeric-${count}-box-multiple-outline ${className}`} />
+      return <SvgIcon src={require('svg/gallery.svg')} />
+    } else {
+      return null
+    }
+  }
+
+  renderIconWithCircle = (blurb: CategoryRouteQuery['content'][0]) => {
+    const icon = this.renderIcon(blurb)
+
+    if (icon) {
+      return (
+        <div className={iconCircle}>
+          {this.renderIcon(blurb)}
+        </div>
+      )
     } else {
       return null
     }
@@ -137,7 +149,7 @@ class HomeRouteBase extends React.Component<Props, State> {
             title={blurb.title}
             minorText={moment(blurb.pubDate).format('lll')}
             imageUrl={blurb.image && blurb.image.url}
-            icon={this.renderIcon(blurb, ticketIcon)}
+            icon={this.renderIconWithCircle(blurb)}
           />
         </div>
       ))
