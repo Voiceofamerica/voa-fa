@@ -46,7 +46,6 @@ import {
   fadeOut,
   mediaButtonContainer,
   mediaButton,
-  mediaIcon,
   articleAuthors,
   articleDate,
   byline,
@@ -232,7 +231,7 @@ class ArticleRouteBase extends React.Component<Props> {
         className={mediaButton}
         onClick={() => playMedia(video.url, article.title, video.videoDescription, true, video.thumbnail)}
       >
-        <SvgIcon src={videoSvg} className={mediaIcon} />
+        <SvgIcon src={videoSvg} />
       </IconItem>
     )
   }
@@ -253,7 +252,7 @@ class ArticleRouteBase extends React.Component<Props> {
         className={mediaButton}
         onClick={() => playMedia(audio.url, audio.audioTitle, audio.audioDescription, false, imgUrl)}
       >
-        <SvgIcon src={audioSvg} className={mediaIcon} />
+        <SvgIcon src={audioSvg} />
       </IconItem>
     )
   }

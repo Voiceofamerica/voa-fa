@@ -85,24 +85,22 @@
 
   .mediaButton {
     $size: 40px;
+    $padding: 8px;
     $margin: 10px;
     @include touchable();
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $voa-blue;
     height: $size;
     width: $size;
-    border: none;
-    padding: 5px;
+    font-size: $size - ($padding * 2);
+    color: white;
     border-radius: $size / 2;
     overflow: hidden;
-    font-size: 25px;
-    margin-right: $margin;
     margin-bottom: $margin;
-    background-color: $voa-blue;
-    color: white;
-  }
-
-  .mediaIcon {
-    margin-top: 2.5px;
+    margin-right: $margin;
   }
 
   .articleText {

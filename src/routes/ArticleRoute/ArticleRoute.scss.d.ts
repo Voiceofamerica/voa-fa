@@ -8,7 +8,6 @@ export const articleDate: string;
 export const contentIcon: string;
 export const mediaButtonContainer: string;
 export const mediaButton: string;
-export const mediaIcon: string;
 export const articleText: string;
 export const paragraph: string;
 export const centerIcon: string;
