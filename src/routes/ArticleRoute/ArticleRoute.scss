@@ -149,7 +149,6 @@
     margin: 10px 0;
 
     .photoContent {
-      background: $voa-grey;
       display: flex;
       flex-direction: column;
       margin-bottom: 70px;
@@ -188,7 +187,6 @@
           padding-bottom: 20px;
 
           .photoTitle {
-            font-weight: bold;
             font-size: 1.2em;
           }
         }
@@ -202,6 +200,43 @@
           background: linear-gradient(transparent, white)
         }
       }
+    }
+
+    $dotSize: 50px;
+
+    .galleryDots {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      margin-top: -50px;
+      list-style: none;
+      text-align: center;
+
+      li {
+        position: relative;
+        display: inline-block;
+        width: $dotSize;
+        height: $dotSize;
+        margin: 0 3px;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      :global {
+        .slick-active img {
+          border-bottom: 5px solid $voa-red !important;
+        }
+      }
+
+      img {
+        border-bottom: 5px solid transparent;
+      }
+    }
+
+    .thumb {
+      max-width: $dotSize;
+      max-height: $dotSize;
     }
   }
 }

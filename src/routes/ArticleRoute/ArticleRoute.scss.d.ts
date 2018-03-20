@@ -24,3 +24,5 @@ export const photoTextContainer: string;
 export const photoText: string;
 export const photoTitle: string;
 export const fadeOut: string;
+export const galleryDots: string;
+export const thumb: string;

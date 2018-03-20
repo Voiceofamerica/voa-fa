@@ -52,6 +52,8 @@ import {
   icon,
   iconActive,
   heroImage,
+  thumb,
+  galleryDots,
 } from './ArticleRoute.scss'
 import * as Query from './ArticleRoute.graphql'
 
@@ -309,30 +311,38 @@ class ArticleRouteBase extends React.Component<Props> {
     return (
       <div>
         {
-          article.photoGallery.map(gal => (
-            <div key={gal.id} className={gallery} dir='ltr'>
-              <Carousel dots>
-                {
-                  gal.photo.slice().sort((a, b) => a.order - b.order).map(photo => (
-                    <div key={photo.id} className={photoContent}>
-                      <div className={photoContainer}>
-                        <ResilientImage src={photo.url} className={photoItem} contain />
-                      </div>
-                      <div className={photoTextContainer}>
-                        <div className={photoText} dir='rtl'>
-                          <div className={photoTitle}>
-                            {photo.photoTitle}
-                          </div>
-                          {photo.photoDescription}
+          article.photoGallery.map(gal => {
+            const customPaging = (i) => (
+              <a>
+                <img src={gal.photo[i].url} className={thumb} />
+              </a>
+            )
+
+            return (
+              <div key={gal.id} className={gallery} dir='ltr'>
+                <Carousel dots rtl dotsClass={galleryDots} customPaging={customPaging}>
+                  {
+                    gal.photo.slice().sort((a, b) => a.order - b.order).map(photo => (
+                      <div key={photo.id} className={photoContent}>
+                        <div className={photoContainer}>
+                          <ResilientImage src={photo.url} className={photoItem} contain />
                         </div>
-                        <div className={fadeOut} />
+                        <div className={photoTextContainer}>
+                          <div className={photoText} dir='rtl'>
+                            <div className={photoTitle}>
+                              {photo.photoTitle}
+                            </div>
+                            {photo.photoDescription}
+                          </div>
+                          <div className={fadeOut} />
+                        </div>
                       </div>
-                    </div>
-                  ))
-                }
-              </Carousel>
-            </div>
-          ))
+                    ))
+                  }
+                </Carousel>
+              </div>
+            )
+          })
         }
       </div>
     )
