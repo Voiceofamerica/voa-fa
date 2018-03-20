@@ -24,6 +24,7 @@ export const categorySettingsLabels = {
   myCategories: 'موضوعات من',
   allCategories: 'همه موضوع‌ها',
   dragAndDrop: 'لطفا موضوع‌تان را به اینجا بکشید',
+  headlinesFirst: 'اول لیست سرخط‌ها',
 }
 
 export const circumventionDrawerLabels = {
@@ -106,10 +107,13 @@ export const searchLabels = {
 export const settingsLabels = {
   header: 'تنظیمات من',
   panic: 'این اپ را حذف کن',
+  sendToFriends: 'ما را به دوستان‌تان معرفی کنید',
+  sendFeedback: 'نظرتان را بگوئید',
+  aboutVoa: 'صدای آمریکا (VOA) خبرها و اطلاعات درست، متعادل و جامع را برای مخاطبان در سراسر جهان منتشر می کند. صدای آمریکا کار خود را با رادیو در سال ۱۹۴۲ آغاز کرد و اکنون یک سازمان گسترده چند رسانه‌ای است. اکنون صدای آمریکا با مردم از طریق تلفن همراه و شبکه های اجتماعی با بیش از ۴۰ زبان در ارتباط است.',
 }
 
 export const textSettingsLabels = {
-  header: 'تنظیم‌های متن',
+  header: 'تنظیم‌‌های متن',
   chooseSize: 'تنظیم اندازه فونت',
   normalSize: 'کوچک',
   largeSize: 'متوسط',
