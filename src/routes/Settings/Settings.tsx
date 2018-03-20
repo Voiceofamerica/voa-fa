@@ -18,7 +18,7 @@ import {
   textSettingsLabels,
 } from 'labels'
 
-import { settings, panicButtonHolder, panicButton, panicButtonIcon, buttons, settingsRow, settingsButton, row, aboutVoa, content, settingsItem, settingsRowHeader, settingsValuesRow, active } from './Settings.scss'
+import { settings, panicButtonHolder, panicButton, panicButtonIcon, buttons, settingsRow, disabled, settingsButton, row, aboutVoa, content, settingsItem, settingsRowHeader, settingsValuesRow, active } from './Settings.scss'
 
 const data = {
   textSize: [
@@ -114,7 +114,7 @@ class SettingsRoute extends React.Component<Props> {
   renderSendToFriends () {
     return (
       <div className={settingsRow}>
-        <button className={settingsButton}>
+        <button className={`${settingsButton} ${disabled}`}>
           {settingsLabels.sendToFriends}
         </button>
       </div>
@@ -124,7 +124,7 @@ class SettingsRoute extends React.Component<Props> {
   renderSendFeedback () {
     return (
       <div className={settingsRow}>
-        <button className={settingsButton}>
+        <button className={`${settingsButton} ${disabled}`}>
           {settingsLabels.sendFeedback}
         </button>
       </div>

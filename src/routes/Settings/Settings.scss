@@ -55,6 +55,10 @@
     padding-bottom: 5px;
     margin-bottom: $menu-height;
 
+    .disabled {
+      color: $voa-grey;
+    }
+
     .settingsRow {
       display: flex;
       flex-direction: column;

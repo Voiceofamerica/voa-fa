@@ -17,7 +17,6 @@ import * as Query from './CategorySettings.graphql'
 import { CategorySettingsQuery } from 'helpers/graphql-types'
 import Loader from 'components/Loader'
 import { categorySettingsLabels, homeLabels } from 'labels'
-import { back } from '../../svg'
 
 import { categorySettings, pill, pillOuter, pillContainer, topNav, bottomNav, icon, headlinesSubtitle, sectionHeader, sectionName, sectionSubtitle } from './CategorySettings.scss'
 
@@ -151,7 +150,7 @@ class CategorySettingsBase extends React.Component<Props, LocalState> {
         </Loader>
         <BottomNav className={bottomNav}>
           <IconItem onClick={() => history.goBack()}>
-            <SvgIcon src={back} className={icon} />
+            <SvgIcon src={require('svg/back.svg')} className={icon} />
           </IconItem>
         </BottomNav>
       </div>
