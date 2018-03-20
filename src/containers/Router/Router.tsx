@@ -11,11 +11,9 @@ import LiveStream from 'routes/LiveStream'
 import BreakingNews from 'routes/BreakingNews'
 import EditorsChoice from 'routes/EditorsChoice'
 import CategorySettings from 'routes/CategorySettings'
-import MediaSettings from 'routes/MediaSettings'
 import Search from 'routes/Search'
 import FavoritesSettings from 'routes/FavoritesSettings'
 import NotificationSettings from 'routes/NotificationSettings'
-import TextSettings from 'routes/TextSettings'
 import ProgramsScreen from 'routes/ProgramsScreen'
 
 import {
@@ -26,7 +24,6 @@ import {
   editorsChoiceLabels,
   favoritesSettingsLabels,
   notificationSettingsLabels,
-  textSettingsLabels,
 } from 'labels'
 
 import BottomOnlyLayout from './layouts/BottomOnlyLayout'
@@ -41,13 +38,11 @@ export default () => (
     <Switch>
       <Route path='/article/:id' component={ArticleRoute}/>
       <Route path='/settings/categories' component={CategorySettings}/>
-      <Route path='/settings/media' component={MediaSettings}/>
       <HeadingOnlyLayout path='/search/:zoneId/:query' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/search/:zoneId' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/search' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/settings/favorites' component={FavoritesSettings} heading={favoritesSettingsLabels.header} />
       <HeadingOnlyLayout path='/settings/notifications' component={NotificationSettings} heading={notificationSettingsLabels.header} />
-      <HeadingOnlyLayout path='/settings/text' component={TextSettings} heading={textSettingsLabels.header} />
       <HeadingLayout path='/settings' component={Settings} heading={settingsLabels.header} />
       <HeadingLayout path='/liveStream' component={LiveStream} heading={liveStreamLabels.header} />
       <HeadingLayout path='/breakingNews' component={BreakingNews} heading={breakingNewsLabels.header} />

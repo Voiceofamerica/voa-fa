@@ -5,6 +5,7 @@ export const panicButtonHolder: string;
 export const panicButton: string;
 export const panicButtonIcon: string;
 export const buttons: string;
+export const disabled: string;
 export const settingsRow: string;
 export const settingsRowHeader: string;
 export const settingsValuesRow: string;
