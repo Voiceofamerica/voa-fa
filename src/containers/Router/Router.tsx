@@ -18,6 +18,7 @@ import ProgramsScreen from 'routes/ProgramsScreen'
 
 import {
   searchLabels,
+  categorySettingsLabels,
   settingsLabels,
   liveStreamLabels,
   breakingNewsLabels,
@@ -37,12 +38,12 @@ export default () => (
   <ConnectedRouter history={history}>
     <Switch>
       <Route path='/article/:id' component={ArticleRoute}/>
-      <Route path='/settings/categories' component={CategorySettings}/>
       <HeadingOnlyLayout path='/search/:zoneId/:query' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/search/:zoneId' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/search' component={Search} heading={searchLabels.header}/>
       <HeadingOnlyLayout path='/settings/favorites' component={FavoritesSettings} heading={favoritesSettingsLabels.header} />
       <HeadingOnlyLayout path='/settings/notifications' component={NotificationSettings} heading={notificationSettingsLabels.header} />
+      <HeadingOnlyLayout path='/settings/categories' component={CategorySettings} heading={categorySettingsLabels.header} />
       <HeadingLayout path='/settings' component={Settings} heading={settingsLabels.header} />
       <HeadingLayout path='/liveStream' component={LiveStream} heading={liveStreamLabels.header} />
       <HeadingLayout path='/breakingNews' component={BreakingNews} heading={breakingNewsLabels.header} />
