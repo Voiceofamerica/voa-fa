@@ -28,6 +28,11 @@
     background: $voa-red;
   }
 
+  hr {
+    border: none;
+    border-bottom: 1px solid $accent-green;
+  }
+
   .heading {
     margin: 20px 15px;
 
@@ -50,11 +55,6 @@
       font-size: 18px;
       font-weight: bold;
       margin: 2vw 0;
-    }
-
-    hr {
-      border: none;
-      border-bottom: 1px solid $accent-yellow;
     }
 
     h2 {

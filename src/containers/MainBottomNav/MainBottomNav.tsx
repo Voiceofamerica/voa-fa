@@ -54,8 +54,8 @@ class MainBottomNavBase extends React.Component<Props> {
   }
 
   renderIcon () {
-    const { mediaDrawerOpen, mediaPlaying } = this.props
-    if (mediaDrawerOpen && mediaPlaying) {
+    const { mediaPlaying } = this.props
+    if (mediaPlaying) {
       return <SvgIcon src={pause} className={centerIcon} />
     } else {
       return <SvgIcon src={play} className={centerIcon} style={{marginLeft: '0.2em'}} />

@@ -292,6 +292,7 @@ class ArticleRouteBase extends React.Component<Props> {
           {this.renderUpdatedDate()}
         </div>
         {this.renderGallery()}
+        <hr />
         {this.renderRelatedArticles()}
       </div>
     )
