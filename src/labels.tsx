@@ -6,7 +6,7 @@ export const graphqlLanguage = 'fa'
 export const momentLocale = 'fa'
 
 export const articleLabels = {
-  updatedOn: (date: string) => `Updated on ${date}`,
+  updatedOn: (date: string) => `${date}`,
   relatedContent: 'مطالب مرتبط',
 }
 
@@ -54,7 +54,7 @@ export const homeLabels = {
 export const introLabels = {
   heading: 'Welcome to VoA!',
   content: 'به صدای آمریکا خوش آمدید',
-  continue: 'Continue',
+  continue: 'رهسپار شدن',
 }
 
 export const liveStreamLabels = {

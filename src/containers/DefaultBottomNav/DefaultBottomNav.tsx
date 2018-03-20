@@ -6,7 +6,6 @@ import { IconItem } from '@voiceofamerica/voa-shared/components/BottomNav'
 import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 
 import MainBottomNav from 'containers/MainBottomNav'
-import { home, editorsChoice, audio, settings } from '../../svg'
 
 import { icon, iconActive } from './DefaultBottomNav.scss'
 
@@ -36,10 +35,10 @@ export default class DefaultBottomNav extends React.Component<Props> {
 
     return [
       <IconItem key={0} active={homeActive} onClick={() => history.replace('/')}>
-        <SvgIcon src={home} className={homeIconClass} />
+        <SvgIcon src={require('svg/home.svg')} className={homeIconClass} />
       </IconItem>,
       <IconItem key={1} active={editorsChoiceActive} onClick={() => history.replace('/editorsChoice')}>
-        <SvgIcon src={editorsChoice} className={editorsChoiceIconClass} />
+        <SvgIcon src={require('svg/editors_choice.svg')} className={editorsChoiceIconClass} />
       </IconItem>,
     ]
   }
@@ -56,10 +55,10 @@ export default class DefaultBottomNav extends React.Component<Props> {
 
     return [
       <IconItem key={0} active={programsActive} onClick={() => history.replace('/programs')}>
-        <SvgIcon src={audio} className={programsIconClass} />
+        <SvgIcon src={require('svg/programs.svg')} className={programsIconClass} />
       </IconItem>,
       <IconItem key={1} active={settingsActive} onClick={() => history.replace('/settings')}>
-        <SvgIcon src={settings} className={settingsIconClass} />
+        <SvgIcon src={require('svg/settings.svg')} className={settingsIconClass} />
       </IconItem>,
     ]
   }
