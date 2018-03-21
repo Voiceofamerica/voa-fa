@@ -77,7 +77,6 @@
     "cordova-pdf-generator": "^1.9.3",
     "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-badge": "^0.8.7",
-    "cordova-plugin-crosswalk-webview": "^2.3.0",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-fullscreen": "^1.2.0",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -142,13 +141,6 @@
       "psiphon-cordova-plugin": {},
       "cordova-plugin-fullscreen": {},
       "ionic-plugin-keyboard": {},
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "false"
-      },
       "cordova-plugin-x-socialsharing": {},
       "cordova-pdf-generator": {},
       "cordova-plugin-add-swift-support": {},
