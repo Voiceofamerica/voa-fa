@@ -12,24 +12,7 @@
   background: white;
   overflow: scroll;
   user-select: none;
-  padding: 0px 10px;
-  
-  .topNav {
-    position: fixed;
-    display: flex;
-    top: 0;
-    left: 0;
-    right: 0;
-    color: black;
-    background: $voa-light-grey;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    height: $menu-height;
-    font-size: $menu-font-size;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
+  padding: 0px 20px;
 
   .bottomNav {
     justify-content: flex-end;
@@ -41,9 +24,9 @@
   }
 
   .pillContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     background: transparent;
 
     padding-top: 10px;
@@ -55,11 +38,13 @@
       padding: 5px;
   
       .pill {
+        width: 25vw;
         background: $voa-blue;
         color: white;
         padding: 3px;
         border-radius: 100px;
         text-align: center;
+        height: calc(2em);
 
         &.dragged {
           background: $border-grey;
@@ -69,6 +54,7 @@
   }
 
   .headlinesSubtitle {
+    flex: 1;
     font-size: 14px;
     grid-column-start: 2;
     grid-column-end: 4;
@@ -80,10 +66,7 @@
 
   .sectionHeader {
     border-top: 2px solid $light-grey;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    margin-left: 5px;
-    margin-right: 5px;
+    width: 100vw;
     margin-top: 10px;
     display: flex;
     flex-direction: row;

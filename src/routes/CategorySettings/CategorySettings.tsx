@@ -18,7 +18,7 @@ import { CategorySettingsQuery } from 'helpers/graphql-types'
 import Loader from 'components/Loader'
 import { categorySettingsLabels, homeLabels } from 'labels'
 
-import { categorySettings, pill, pillOuter, pillContainer, topNav, bottomNav, icon, headlinesSubtitle, sectionHeader, sectionName, sectionSubtitle } from './CategorySettings.scss'
+import { categorySettings, pill, pillOuter, pillContainer, bottomNav, icon, headlinesSubtitle, sectionHeader, sectionName, sectionSubtitle } from './CategorySettings.scss'
 
 import CategoryPill, { PillItem } from './CategoryPill'
 
@@ -130,7 +130,6 @@ class CategorySettingsBase extends React.Component<Props, LocalState> {
 
     return (
       <div className={categorySettings}>
-        <div className={topNav}>{categorySettingsLabels.header}</div>
         <Loader data={data}>
           <div className={pillContainer}>
             <div className={pillOuter}>

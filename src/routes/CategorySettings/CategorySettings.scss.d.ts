@@ -1,5 +1,4 @@
 export const categorySettings: string;
-export const topNav: string;
 export const bottomNav: string;
 export const icon: string;
 export const pillContainer: string;

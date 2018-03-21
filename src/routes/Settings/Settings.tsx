@@ -52,6 +52,8 @@ type Props = RouteProps & AnalyticsProps & StateProps & DispatchProps
 
 class SettingsRoute extends React.Component<Props> {
   renderPanicButton () {
+    const { clearAll } = this.props
+
     return (
       <div className={row}>
         <div className={panicButtonHolder}>
