@@ -1,5 +1,5 @@
 query HomeRoute {
-  content(source: fa, type: [Article, Video, PhotoGallery, Clip]) {
+  content(source: fa, type: [Article, Video, PhotoGallery, Clip], topNews: true) {
     id
     title
     introduction
