@@ -27,7 +27,7 @@
     "build:full": "run-s -c cordova:prepare cordova:prepare cordova:prepare copy:assets build",
     "copy:assets": "run-p copy:assets:*",
     "copy:assets:ios": "rsync -rv ./assets/ios/Images.xcassets/ ./platforms/ios/VOAFarsi/Images.xcassets/",
-    "copy:assets:android": "rsync -rv ./assets/android/res/ ./platforms/android/res/",
+    "copy:assets:android": "rsync -rv ./assets/android/res/ ./platforms/android/app/src/main/res/",
     "build:android:clean": "rimraf platforms && npm run build:webpack && cordova prepare android && npm run copy:assets:android && cordova build android",
     "build:android": "npm run build:webpack && cordova build android",
     "deploy:android": "adb uninstallcom.voanews.voafa > /dev/null 2>&1 || true && adb install platforms/android/build/outputs/apk/debug/android-debug.apk",
