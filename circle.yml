@@ -32,7 +32,7 @@ jobs:
           paths:
             - "~/.npm"
             - "node_modules"
-      - run: npx cordova prepare
+      - run: npx cordova prepare android
       - run: npm run copy:assets:android
       - save_cache:
           <<: *cacheAndroidCordovaKey
