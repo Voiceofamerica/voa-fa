@@ -15,10 +15,6 @@ export const breakingNewsLabels = {
   noNews: 'اکنون خبر شکستن وجود ندارد',
 }
 
-export const editorsChoiceLabels = {
-  header: 'انتخاب سردبیر',
-}
-
 export const categorySettingsLabels = {
   header: 'مدیریت موضوعات',
   myCategories: 'موضوعات من',
@@ -33,6 +29,10 @@ export const circumventionDrawerLabels = {
       اتصال شما به VOA خصوصی، امن و ناشناس است
     </div>
   ),
+}
+
+export const editorsChoiceLabels = {
+  header: 'انتخاب سردبیر',
 }
 
 export const errorBoundaryLabels = {

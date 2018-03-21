@@ -249,5 +249,8 @@ export type SearchQuery = {
     audio:  {
       url: string | null,
     } | null,
+    photoGallery:  Array< {
+      id: number,
+    } | null > | null,
   } | null > | null,
 };
