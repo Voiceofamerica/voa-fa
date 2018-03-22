@@ -89,6 +89,8 @@ export const programsScreenLabels = {
   videos: 'ویدئوی انتخابی',
   audio: 'برنامه شنیداری',
   all: 'تلويزيون',
+  live: 'در حال پخش',
+  liveHeader: 'پخش زنده',
 }
 
 export const pullToRefreshLabels = {

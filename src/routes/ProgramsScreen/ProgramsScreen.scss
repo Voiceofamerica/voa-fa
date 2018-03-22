@@ -45,4 +45,32 @@
       }
     }
   }
+
+  .iconCircle {
+    $size: 40px;
+    $padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(64, 64, 64, 0.5);
+    width: $size;
+    height: $size;
+    font-size: $size - ($padding * 2);
+    color: white;
+    border-radius: $size / 2;
+  }
+
+  .liveBlock {
+    padding: 0 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: $voa-red;
+    color: white;
+  }
+
+  .liveText {
+    margin: 10px 15px;
+  }
 }

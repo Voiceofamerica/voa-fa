@@ -1,0 +1,13 @@
+query ProgramLiveVideo {
+  live: program(source: fa, type: [Video]) {
+    id
+    date
+    timeLeft
+    programTitle
+    programDescription
+    image {
+      url
+    }
+    url
+  }
+}

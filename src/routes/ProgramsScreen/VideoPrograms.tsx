@@ -32,10 +32,6 @@ interface DispatchProps {
 type Props = ChildProps<OwnProps, ProgramVideosQuery> & DispatchProps
 
 class ClipPrograms extends React.Component<Props> {
-  goTo (route: string) {
-    const { history } = this.props
-    history.push(route)
-  }
 
   playVideo (item: ProgramVideosQuery['program'][0]) {
     this.props.playMedia(

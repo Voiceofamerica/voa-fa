@@ -211,6 +211,20 @@ export type ProgramGalleriesQuery = {
   } | null > | null,
 };
 
+export type ProgramLiveVideoQuery = {
+  live:  Array< {
+    id: number,
+    date: string | null,
+    timeLeft: number | null,
+    programTitle: string | null,
+    programDescription: string | null,
+    image:  {
+      url: string,
+    } | null,
+    url: string | null,
+  } | null > | null,
+};
+
 export type ProgramVideosQueryVariables = {
   zone?: number | null,
 };

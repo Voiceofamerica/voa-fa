@@ -9,14 +9,13 @@ import Category from 'types/Category'
 import { programsScreenLabels } from 'labels'
 
 import Params from './Params'
-import ClipPrograms from './ClipPrograms'
+import LiveVideoPrograms from './LiveVideoPrograms'
 import VideoPrograms from './VideoPrograms'
 import { programsScreen, programTypeNav, typeItem, active } from './ProgramsScreen.scss'
 
-type ProgramType = 'clip' | 'gallery' | 'video'
+type ProgramType = 'live' | 'video'
 
-const CLIP: ProgramType = 'clip'
-// const GALLERY: ProgramType = 'gallery'
+const LIVE: ProgramType = 'live'
 const VIDEO: ProgramType = 'video'
 
 const PROGRAM_ZONES: Category[] = [
@@ -137,8 +136,8 @@ class ProgramsScreen extends React.Component<Props> {
   renderPrograms () {
     const { history, match } = this.props
     const { type = VIDEO } = match.params
-    if (type === CLIP) {
-      return <ClipPrograms history={history} />
+    if (type === LIVE) {
+      return <LiveVideoPrograms history={history} />
     } else if (type === VIDEO) {
       return <VideoPrograms history={history} match={match} />
     } else {
@@ -155,9 +154,9 @@ class ProgramsScreen extends React.Component<Props> {
           {programsScreenLabels.videos}
         </div>
         {
-        // <div className={type === CLIP ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(CLIP)}>
-        //   {programsScreenLabels.audio}
-        // </div>
+        <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
+          {programsScreenLabels.liveHeader}
+        </div>
         }
       </div>
     )
@@ -195,6 +194,7 @@ class ProgramsScreen extends React.Component<Props> {
         <ErrorBoundary>
           {this.renderPrograms()}
         </ErrorBoundary>
+        {this.renderProgramTypes()}
       </div>
     )
   }
