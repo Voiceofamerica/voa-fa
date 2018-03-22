@@ -70,6 +70,7 @@ export const mediaPlayerLabels = {
       </p>
     </div>
   ),
+  loading: 'در حال بارگذاری',
 }
 
 export const mediaSettingsLabels = {
