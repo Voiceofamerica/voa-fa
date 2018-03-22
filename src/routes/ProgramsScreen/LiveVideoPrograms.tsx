@@ -90,8 +90,8 @@ const withQuery = graphql<ProgramLiveVideoQuery, OwnProps>(
   Query,
   {
     props: ({ data }) => {
-      if (!data.loading && !data.error) {
-        data.live = data.live.filter(c => c && c.url).map(c => {
+      if (data && !data.loading && !data.error) {
+        data.live = data.live.map(c => {
           return {
             ...c,
             image: c.image && {
@@ -117,9 +117,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => {
   }
 }
 
-const withRedux = connect(null, mapDispatchToProps)
+const withRedux = connect<{}, DispatchProps, OwnProps>(null, mapDispatchToProps)
 
 export default compose(
-  withQuery,
   withRedux,
+  withQuery,
 )(ClipPrograms)

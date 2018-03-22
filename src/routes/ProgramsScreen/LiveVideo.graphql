@@ -1,6 +1,5 @@
 query ProgramLiveVideo {
-  live: program(source: fa, type: [Video]) {
-    id
+  live: program(source: fa, type: [BroadcastProgram]) {
     date
     timeLeft
     programTitle
