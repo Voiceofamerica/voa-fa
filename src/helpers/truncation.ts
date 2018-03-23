@@ -1,5 +1,5 @@
 
-const MAX_LENGTH = 33
+const MAX_LENGTH = 70
 
 export function truncateTitleText (title: string, hasIcon: boolean) {
   if (title.length > MAX_LENGTH || (title.length === MAX_LENGTH && hasIcon)) {
