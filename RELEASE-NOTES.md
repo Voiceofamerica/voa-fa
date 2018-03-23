@@ -8,3 +8,7 @@
 - Added live video program
 - Videos can now be played in landscape mode
 - New back icon
+
+### Bugfixes
+
+- Search screen input bug

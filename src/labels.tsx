@@ -100,7 +100,7 @@ export const pullToRefreshLabels = {
 }
 
 export const searchLabels = {
-  header: 'جستجو برای ....',
+  header: 'جستجو برای',
   back: 'لغو',
   all: 'همه',
   query: 'جستجو',
