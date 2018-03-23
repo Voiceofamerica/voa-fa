@@ -94,7 +94,6 @@ const withQuery = graphql<ProgramLiveVideoQuery, OwnProps>(
         data.live = data.live.map(c => {
           return {
             ...c,
-            url: 'https://voa-lh.akamaihd.net/i/voapnn_7@72817/master.m3u8',
             image: c.image && {
               ...c.image,
               url: mapImageUrl(c.image.url, 'w500'),
