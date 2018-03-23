@@ -1,5 +1,6 @@
 
 import * as React from 'react'
+import { compose } from 'redux'
 import { RouteComponentProps } from 'react-router'
 import { graphql, ChildProps } from 'react-apollo'
 import * as moment from 'moment'
@@ -203,10 +204,10 @@ const withEditorsChoiceQuery = graphql(
 
       return { data: outputData }
     },
-    options: {
-      fetchPolicy: 'cache-first',
-    },
   },
 )
 
-export default withEditorsChoiceQuery(withAnalytics(EditorsChoiceBase))
+export default compose(
+  withEditorsChoiceQuery,
+  withAnalytics,
+)(EditorsChoiceBase)

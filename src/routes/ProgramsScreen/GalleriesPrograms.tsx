@@ -66,7 +66,7 @@ class GalleryPrograms extends React.Component<Props> {
   }
 }
 
-const withQuery = graphql<ProgramGalleriesQuery, OwnProps>(
+const withQuery = graphql<Props, ProgramGalleriesQuery>(
   Query,
   {
     props: ({ data }) => {
@@ -83,9 +83,6 @@ const withQuery = graphql<ProgramGalleriesQuery, OwnProps>(
       }
 
       return { data }
-    },
-    options: {
-      fetchPolicy: 'cache-first',
     },
   },
 )

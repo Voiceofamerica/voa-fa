@@ -54,7 +54,7 @@ class ClipPrograms extends React.Component<Props> {
   }
 }
 
-const withQuery = graphql<ProgramClipsQuery, OwnProps>(
+const withQuery = graphql<Props, ProgramClipsQuery>(
   Query,
   {
     props: ({ data }) => {
@@ -71,9 +71,6 @@ const withQuery = graphql<ProgramClipsQuery, OwnProps>(
       }
 
       return { data }
-    },
-    options: {
-      fetchPolicy: 'cache-first',
     },
   },
 )

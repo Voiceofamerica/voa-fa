@@ -26,7 +26,8 @@ interface DispatchProps {
   playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, isVideo: boolean) => void
 }
 
-type Props = ChildProps<OwnProps, ProgramLiveVideoQuery> & DispatchProps
+type QueryProps = ChildProps<OwnProps, ProgramLiveVideoQuery>
+type Props = QueryProps & DispatchProps
 
 class ClipPrograms extends React.Component<Props> {
   playVideo (item: ProgramLiveVideoQuery['live'][0]) {
@@ -86,7 +87,7 @@ class ClipPrograms extends React.Component<Props> {
   }
 }
 
-const withQuery = graphql<ProgramLiveVideoQuery, OwnProps>(
+const withQuery = graphql<QueryProps, ProgramLiveVideoQuery>(
   Query,
   {
     props: ({ data }) => {
@@ -105,7 +106,7 @@ const withQuery = graphql<ProgramLiveVideoQuery, OwnProps>(
       return { data }
     },
     options: {
-      fetchPolicy: 'cache-first',
+      fetchPolicy: 'network-only',
     },
   },
 )

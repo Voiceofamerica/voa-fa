@@ -432,7 +432,6 @@ const withQuery = graphql(
       variables: {
         id: parseInt(ownProps.match.params.id, 10),
       },
-      fetchPolicy: 'cache-first',
     }),
 
     props: ({ data }) => {

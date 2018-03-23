@@ -1,5 +1,6 @@
 
 import * as React from 'react'
+import { compose } from 'redux'
 import { RouteComponentProps } from 'react-router'
 import { graphql, ChildProps } from 'react-apollo'
 import * as moment from 'moment'
@@ -168,6 +169,8 @@ class HomeRouteBase extends React.Component<Props, State> {
   render () {
     const { data } = this.props
 
+    console.log('Home', data)
+
     return (
       <div className={homeRoute}>
         <Loader data={data} hasContent={data.content && data.content.length > 0}>
@@ -188,6 +191,7 @@ const withHomeQuery = graphql(
   Query,
   {
     props: ({ data }) => {
+      console.log('graphql', data)
       let outputData = data as (typeof data) & HomeRouteQuery
       if (!data.loading && !data.error) {
         outputData.content = outputData.content.filter(c => c).map(c => {
@@ -203,10 +207,10 @@ const withHomeQuery = graphql(
 
       return { data: outputData }
     },
-    options: {
-      fetchPolicy: 'cache-first',
-    },
   },
 )
 
-export default withHomeQuery(withAnalytics(HomeRouteBase))
+export default compose(
+  withHomeQuery,
+  withAnalytics,
+)(HomeRouteBase)
