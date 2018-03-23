@@ -16,14 +16,12 @@ interface Props extends React.Props<HTMLDivElement> {
 export default class WrappedLoader extends React.Component<Props> {
   render () {
     const { data, children, className, style, hasContent } = this.props
-    const { loading, error, refetch, networkStatus } = data
-    console.log('fa-loader', this.props)
+    const { loading, error, refetch } = data
 
     return (
       <Loader
         loading={loading}
         error={error}
-        networkStatus={networkStatus}
         refetch={refetch}
         className={className}
         style={style}
