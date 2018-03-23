@@ -16,13 +16,14 @@ interface Props extends React.Props<HTMLDivElement> {
 export default class WrappedLoader extends React.Component<Props> {
   render () {
     const { data, children, className, style, hasContent } = this.props
-    const { loading, error, refetch } = data
+    const { loading, error, refetch, networkStatus } = data
 
     return (
       <Loader
         loading={loading}
         error={error}
         refetch={refetch}
+        networkStatus={networkStatus}
         className={className}
         style={style}
         hasContent={hasContent}
