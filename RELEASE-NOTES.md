@@ -1,5 +1,15 @@
 # Release Notes
 
+## VOA Farsi 1.6.0 (106000)
+
+### What's new
+
+### Bugfixes
+
+- Retry button now works when a network error occurs
+
+------------------------------------------------------
+
 ## VOA Farsi 1.5.0 (105000)
 
 ### What's new
