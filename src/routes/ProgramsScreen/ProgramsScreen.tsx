@@ -67,10 +67,10 @@ const PROGRAM_ZONES: Category[] = [
     id: 4071,
     name: 'اکران',
   },
-  // { prospect - no programs with valid URLs
-  //   id: 4073,
-  //   name: 'چشم انداز',
-  // },
+  {
+    id: 4073,
+    name: 'چشم انداز',
+  },
   {
     id: 4135,
     name: 'نقش قلم',
@@ -87,18 +87,18 @@ const PROGRAM_ZONES: Category[] = [
     id: 4761,
     name: 'فرارو',
   },
-  // { the-best-of - no programs with valid URLs
-  //   id: 3826,
-  //   name: 'گزارش هفته',
-  // },
+  {
+    id: 3826,
+    name: 'گزارش هفته',
+  },
   {
     id: 4303,
     name: 'صدای شما',
   },
-  // { reversions - no programs with valid URLs
-  //   id: 4072,
-  //   name: 'روزنه',
-  // },
+  {
+    id: 4072,
+    name: 'روزنه',
+  },
   // { special-programs - no zone id found
   //   id: 0,
   //   name: 'ویژه برنامه ها',

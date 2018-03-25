@@ -92,6 +92,7 @@ export const programsScreenLabels = {
   all: 'تلويزيون',
   live: 'در حال پخش',
   liveHeader: 'پخش زنده',
+  empty: 'No Programs Available',
 }
 
 export const pullToRefreshLabels = {

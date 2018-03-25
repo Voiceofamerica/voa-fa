@@ -15,10 +15,11 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 // import { programsScreenLabels } from 'labels'
 import { ProgramVideosQuery, ProgramVideosQueryVariables } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
+import { programsScreenLabels } from 'labels'
 
 import Params from './Params'
 import * as Query from './Videos.graphql'
-import { programContent } from './ProgramsScreen.scss'
+import { programContent, emptyContent } from './ProgramsScreen.scss'
 
 interface OwnProps {
   history: History
@@ -26,7 +27,7 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-  playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, isVideo: boolean) => void
+  playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, imageUrl: string) => void
 }
 
 type QueryProps = ChildProps<OwnProps, ProgramVideosQuery>
@@ -34,33 +35,49 @@ type Props = QueryProps & DispatchProps
 
 class ClipPrograms extends React.Component<Props> {
 
-  playVideo (item: ProgramVideosQuery['program'][0]) {
+  playVideo (item: ProgramVideosQuery['program'][0], imageUrl: string) {
     this.props.playMedia(
       item.url,
       item.programTitle,
       item.programDescription,
-      true,
+      imageUrl,
+    )
+  }
+
+  renderContent () {
+    const { data } = this.props
+
+    return (
+      data.program && data.program.map(item => (
+        <div key={item.id}>
+          <Ticket
+            onPress={() => this.playVideo(item, item.image && item.image.url)}
+            title={item.programTitle}
+            imageUrl={item.image && item.image.url}
+            minorText={moment(item.date).format('lll')}
+          />
+        </div>
+      ))
+    )
+  }
+
+  renderEmpty () {
+    return (
+      <div className={emptyContent}>
+        {programsScreenLabels.empty}
+      </div>
     )
   }
 
   render () {
     const { data } = this.props
 
+    const content = data.program && data.program.length ? this.renderContent() : this.renderEmpty()
+
     return (
       <div className={programContent}>
         <Loader data={data}>
-          {
-            data.program && data.program.map(item => (
-              <div key={item.id}>
-                <Ticket
-                  onPress={() => this.playVideo(item)}
-                  title={item.programTitle}
-                  imageUrl={item.image && item.image.url}
-                  minorText={moment(item.date).format('lll')}
-                />
-              </div>
-            ))
-          }
+          {content}
         </Loader>
       </div>
     )
@@ -95,8 +112,8 @@ const withQuery = graphql<QueryProps, ProgramVideosQuery>(
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => {
   return {
-    playMedia: (mediaUrl, mediaTitle, mediaDescription, isVideo) =>
-      dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, isVideo })),
+    playMedia: (mediaUrl, mediaTitle, mediaDescription, imageUrl) =>
+      dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, imageUrl, isVideo: true })),
   }
 }
 
