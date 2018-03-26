@@ -5,5 +5,6 @@ export const programTypeNav: string;
 export const typeItem: string;
 export const active: string;
 export const iconCircle: string;
+export const playAudio: string;
 export const liveBlock: string;
 export const liveText: string;

@@ -16,14 +16,14 @@ import { ProgramLiveVideoQuery } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
 
 import * as Query from './LiveVideo.graphql'
-import { programContent, iconCircle, liveBlock, liveText } from './ProgramsScreen.scss'
+import { programContent, iconCircle, liveBlock, liveText, playAudio } from './ProgramsScreen.scss'
 
 interface OwnProps {
   history: History
 }
 
 interface DispatchProps {
-  playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, isVideo: boolean) => void
+  playMedia: (mediaUrl: string, mediaTitle: string, mediaDescription: string, isVideo: boolean, imageUrl: string) => void
 }
 
 type QueryProps = ChildProps<OwnProps, ProgramLiveVideoQuery>
@@ -40,6 +40,20 @@ class ClipPrograms extends React.Component<Props> {
       item.programTitle,
       item.programDescription,
       true,
+      item.image && item.image.url,
+    )
+  }
+  playAudio (item: ProgramLiveVideoQuery['live'][0], audioUrl: string) {
+    if (!audioUrl) {
+      return
+    }
+
+    this.props.playMedia(
+      audioUrl,
+      item.programTitle,
+      item.programDescription,
+      false,
+      item.image && item.image.url,
     )
   }
 
@@ -51,6 +65,7 @@ class ClipPrograms extends React.Component<Props> {
     }
 
     const program = data.live[0]
+    const audioUrl = data.audio[0] && data.audio[0].url
 
     return (
       <div>
@@ -62,6 +77,14 @@ class ClipPrograms extends React.Component<Props> {
             {programsScreenLabels.live}
           </div>
         </ResilientImage>
+        {
+          audioUrl
+          ? <div className={playAudio} onClick={() => this.playAudio(program, audioUrl)}>
+              {programsScreenLabels.playAudio}
+              <SvgIcon src={require('svg/audio.svg')} style={{ margin: 5 }} />
+            </div>
+          : null
+        }
         <div className={liveText}>
           {program.programDescription}
         </div>
@@ -113,8 +136,8 @@ const withQuery = graphql<QueryProps, ProgramLiveVideoQuery>(
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => {
   return {
-    playMedia: (mediaUrl, mediaTitle, mediaDescription, isVideo) =>
-      dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, isVideo })),
+    playMedia: (mediaUrl, mediaTitle, mediaDescription, isVideo, imageUrl) =>
+      dispatch(playMedia({ mediaUrl, mediaTitle, mediaDescription, isVideo, imageUrl })),
   }
 }
 

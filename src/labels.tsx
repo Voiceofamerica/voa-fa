@@ -93,6 +93,7 @@ export const programsScreenLabels = {
   live: 'در حال پخش',
   liveHeader: 'پخش زنده',
   empty: 'No Programs Available',
+  playAudio: 'Play Audio',
 }
 
 export const pullToRefreshLabels = {

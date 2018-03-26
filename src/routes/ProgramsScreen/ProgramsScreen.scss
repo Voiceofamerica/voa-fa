@@ -70,6 +70,17 @@
     border-radius: $size / 2;
   }
 
+  .playAudio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 20px;
+    background: $voa-blue;
+    font-size: 20px;
+    color: white;
+    border-radius: 40px;
+  }
+
   .liveBlock {
     padding: 0 10px;
     position: absolute;

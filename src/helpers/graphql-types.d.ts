@@ -213,7 +213,6 @@ export type ProgramGalleriesQuery = {
 
 export type ProgramLiveVideoQuery = {
   live:  Array< {
-    id: number,
     date: string | null,
     timeLeft: number | null,
     programTitle: string | null,
@@ -221,6 +220,9 @@ export type ProgramLiveVideoQuery = {
     image:  {
       url: string,
     } | null,
+    url: string | null,
+  } | null > | null,
+  audio:  Array< {
     url: string | null,
   } | null > | null,
 };

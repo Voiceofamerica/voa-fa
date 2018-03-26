@@ -9,4 +9,7 @@ query ProgramLiveVideo {
     }
     url
   }
+  audio: program(source: fa, type: [Clip]) {
+    url
+  }
 }
