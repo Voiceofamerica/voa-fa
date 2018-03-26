@@ -6,6 +6,7 @@ import * as moment from 'moment'
 import { match } from 'react-router'
 import { graphql, ChildProps, QueryOpts } from 'react-apollo'
 import { connect, Dispatch } from 'react-redux'
+import { List, ListRowProps } from 'react-virtualized'
 
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
@@ -44,20 +45,36 @@ class ClipPrograms extends React.Component<Props> {
     )
   }
 
-  renderContent () {
-    const { data } = this.props
+  renderVirtualContent () {
+    const { data: { program } } = this.props
+    const rowHeight = 105
 
     return (
-      data.program && data.program.map(item => (
-        <div key={item.id}>
-          <Ticket
-            onPress={() => this.playVideo(item, item.image && item.image.url)}
-            title={item.programTitle}
-            imageUrl={item.image && item.image.url}
-            minorText={moment(item.date).format('lll')}
-          />
-        </div>
-      ))
+      <List
+        height={window.innerHeight - 150}
+        rowHeight={rowHeight}
+        rowCount={program.length}
+        width={window.innerWidth}
+        rowRenderer={this.renderRow}
+      />
+    )
+  }
+
+  renderRow = ({ index, isScrolling, key, style }: ListRowProps) => {
+    const { data: { program } } = this.props
+
+    const item = program[index]
+
+    return (
+      <div key={key} style={style}>
+        <Ticket
+          onPress={() => this.playVideo(item, item.image && item.image.url)}
+          title={item.programTitle}
+          imageUrl={item.image && item.image.url}
+          minorText={moment(item.date).format('lll')}
+          suppressImage={isScrolling}
+        />
+      </div>
     )
   }
 
@@ -72,7 +89,7 @@ class ClipPrograms extends React.Component<Props> {
   render () {
     const { data } = this.props
 
-    const content = data.program && data.program.length ? this.renderContent() : this.renderEmpty()
+    const content = data.program && data.program.length ? this.renderVirtualContent() : this.renderEmpty()
 
     return (
       <div className={programContent}>
