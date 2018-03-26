@@ -19,7 +19,7 @@ export const categorySettingsLabels = {
   header: 'مدیریت موضوعات',
   myCategories: 'موضوعات من',
   allCategories: 'همه موضوع‌ها',
-  dragAndDrop: 'لطفا موضوع‌تان را به اینجا بکشید',
+  dragAndDrop: 'محل تنضیم موضوعات  در “خانه ” بر حسب اولویت',
   headlinesFirst: 'اول لیست سرخط‌ها',
 }
 
@@ -46,7 +46,7 @@ export const favoritesSettingsLabels = {
 }
 
 export const homeLabels = {
-  headlines: 'سرخط خبرها',
+  headlines: 'خبر',
   search: 'جستجو',
   manage: '+',
 }
@@ -118,7 +118,7 @@ export const settingsLabels = {
 
 export const textSettingsLabels = {
   header: 'تنظیم‌‌های متن',
-  chooseSize: 'تنظیم اندازه فونت',
+  chooseSize: 'اندازه فونت',
   normalSize: 'کوچک',
   largeSize: 'متوسط',
   hugeSize: 'بزرگ',
