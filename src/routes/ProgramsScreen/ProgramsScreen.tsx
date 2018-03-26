@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import TopNav, { TopNavItem } from '@voiceofamerica/voa-shared/components/TopNav'
+import TopNav, { TopNavItem, StaticItem, ColorInfo } from '@voiceofamerica/voa-shared/components/TopNav'
 
 import analytics, { AnalyticsProps } from 'helpers/analytics'
 import ErrorBoundary from 'components/ErrorBoundary'
@@ -115,6 +115,14 @@ const PROGRAM_ZONES: Category[] = [
 interface Props extends RouteComponentProps<Params>, AnalyticsProps {
 }
 
+const TOP_NAV_COLORS: ColorInfo = {
+  mainBackground: '#0061B0',
+  mainColor: '#FFFFFF',
+  staticColor: '#FFFFFF',
+  selectedBackground: '#FFFFFF',
+  selectedColor: '#000000',
+}
+
 class ProgramsScreen extends React.Component<Props> {
   setProgramType = (programType: ProgramType) => {
     const { history, match } = this.props
@@ -166,7 +174,8 @@ class ProgramsScreen extends React.Component<Props> {
     const { zone } = this.props.match.params
 
     return (
-      <TopNav>
+      <TopNav rtl color={TOP_NAV_COLORS}>
+        <StaticItem />
         {
           PROGRAM_ZONES.map(({ id, name }, idx) => {
             const selected = zone ? parseInt(zone, 10) === id : idx === 0

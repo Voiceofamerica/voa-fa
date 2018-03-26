@@ -74,7 +74,7 @@ class ClipPrograms extends React.Component<Props> {
 
     return (
       <div className={programContent}>
-        <TopNav>
+        <TopNav rtl>
           <CenterText>
             {programsScreenLabels.liveHeader}
           </CenterText>

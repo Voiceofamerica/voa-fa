@@ -26,7 +26,7 @@ function MainLayout ({ component: Component, heading, ...rest }: Props) {
     <Route {...rest} render={props => {
       return (
         <div>
-          <TopNav>
+          <TopNav rtl>
             <CenterText>
               {heading}
             </CenterText>

@@ -15,7 +15,7 @@ function MainLayout ({ component: Component, heading, ...rest }: Props) {
     <Route {...rest} render={props => {
       return (
         <div className={headingOnlyLayout}>
-          <TopNav>
+          <TopNav rtl>
             <CenterText>
               {heading}
             </CenterText>

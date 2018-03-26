@@ -46,7 +46,7 @@ export const favoritesSettingsLabels = {
 }
 
 export const homeLabels = {
-  headlines: 'خبر',
+  headlines: 'همه خبرها',
   search: 'جستجو',
   manage: '+',
 }

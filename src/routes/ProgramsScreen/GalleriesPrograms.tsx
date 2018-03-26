@@ -4,7 +4,7 @@ import { History } from 'history'
 import { graphql, ChildProps } from 'react-apollo'
 import * as moment from 'moment'
 
-import TopNav, { TopNavItem } from '@voiceofamerica/voa-shared/components/TopNav'
+import TopNav, { TopNavItem, StaticItem } from '@voiceofamerica/voa-shared/components/TopNav'
 import Ticket from '@voiceofamerica/voa-shared/components/Ticket'
 
 import Loader from 'components/Loader'
@@ -36,16 +36,17 @@ class GalleryPrograms extends React.Component<Props> {
 
     return (
       <div className={programContent}>
-        <TopNav>
+        <TopNav rtl>
+          <StaticItem />
           <TopNavItem selected>
             Test
           </TopNavItem>
           <TopNavItem>
             Test 1
           </TopNavItem>
-          <TopNavItem>
+          <StaticItem>
             +
-          </TopNavItem>
+          </StaticItem>
         </TopNav>
         <Loader data={data}>
           {
