@@ -79,10 +79,6 @@ export const INITIAL_STATE: AppSettings = {
       id: 1113,
       name: 'گالری عکس',
     },
-    {
-      id: 1139,
-      name: 'نظرسنجی‌ها',
-    },
   ],
   mediaPlaybackRate: 1,
   dailyNotificationOn: true,
