@@ -129,7 +129,7 @@ class ArticleRouteBase extends React.Component<Props> {
     const { url } = this.props.data.content[0]
 
     window.plugins.socialsharing.shareWithOptions({
-      message: '',
+      message: articleLabels.shareMessage,
       url,
     })
   }
