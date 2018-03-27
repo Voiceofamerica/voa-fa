@@ -4,9 +4,15 @@
 
 ### What's new
 
+- Added live audio program
+- App sharing link in settings now works
+- Feedback link in settings now works
+
 ### Bugfixes
 
 - Retry button now works when a network error occurs
+- Various styling and usability updates
+- Improved performance on the programs screen with virtual scrolling
 
 ------------------------------------------------------
 
