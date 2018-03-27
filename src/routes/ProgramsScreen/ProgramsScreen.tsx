@@ -2,13 +2,14 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import TopNav, { TopNavItem, StaticItem } from '@voiceofamerica/voa-shared/components/TopNav'
-import ThemeProvider, { Theme } from '@voiceofamerica/voa-shared/components/ThemeProvider'
+import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 
 import analytics, { AnalyticsProps } from 'helpers/analytics'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Category from 'types/Category'
 import { programsScreenLabels } from 'labels'
 
+import TopNavTheme from './TopNavTheme'
 import Params from './Params'
 import LiveVideoPrograms from './LiveVideoPrograms'
 import VideoPrograms from './VideoPrograms'
@@ -116,14 +117,6 @@ const PROGRAM_ZONES: Category[] = [
 interface Props extends RouteComponentProps<Params>, AnalyticsProps {
 }
 
-const TOP_NAV_COLORS: Theme = {
-  mainBackground: '#0061B0',
-  mainColor: '#FFFFFF',
-  staticColor: '#FFFFFF',
-  selectedBackground: '#FFFFFF',
-  selectedColor: '#000000',
-}
-
 class ProgramsScreen extends React.Component<Props> {
   setProgramType = (programType: ProgramType) => {
     const { history, match } = this.props
@@ -175,7 +168,7 @@ class ProgramsScreen extends React.Component<Props> {
     const { zone } = this.props.match.params
 
     return (
-      <ThemeProvider value={TOP_NAV_COLORS}>
+      <ThemeProvider value={TopNavTheme}>
         <TopNav rtl>
           <StaticItem />
           {

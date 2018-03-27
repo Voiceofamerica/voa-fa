@@ -7,6 +7,7 @@ import { connect, Dispatch } from 'react-redux'
 import ResilientImage from '@voiceofamerica/voa-shared/components/ResilientImage'
 import SvgIcon from '@voiceofamerica/voa-shared/components/SvgIcon'
 import TopNav, { CenterText } from '@voiceofamerica/voa-shared/components/TopNav'
+import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 
 import Loader from 'components/Loader'
 import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
@@ -16,6 +17,7 @@ import { ProgramLiveVideoQuery } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
 import { isIos } from 'helpers/platform'
 
+import TopNavTheme from './TopNavTheme'
 import * as Query from './LiveVideo.graphql'
 import { programContent, iconCircle, liveBlock, liveText, playAudio } from './ProgramsScreen.scss'
 
@@ -99,11 +101,13 @@ class ClipPrograms extends React.Component<Props> {
 
     return (
       <div className={programContent}>
-        <TopNav rtl>
-          <CenterText>
-            {programsScreenLabels.liveHeader}
-          </CenterText>
-        </TopNav>
+        <ThemeProvider value={TopNavTheme}>
+          <TopNav rtl style={{ zIndex: 12 }}>
+            <CenterText>
+              {programsScreenLabels.liveHeader}
+            </CenterText>
+          </TopNav>
+        </ThemeProvider>
         <Loader data={data}>
           {this.renderLiveContent()}
         </Loader>
