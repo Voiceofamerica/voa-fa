@@ -14,6 +14,7 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 import { programsScreenLabels } from 'labels'
 import { ProgramLiveVideoQuery } from 'helpers/graphql-types'
 import { mapImageUrl } from 'helpers/image'
+import { isIos } from 'helpers/platform'
 
 import * as Query from './LiveVideo.graphql'
 import { programContent, iconCircle, liveBlock, liveText, playAudio } from './ProgramsScreen.scss'
@@ -43,6 +44,7 @@ class ClipPrograms extends React.Component<Props> {
       item.image && item.image.url,
     )
   }
+
   playAudio (item: ProgramLiveVideoQuery['live'][0], audioUrl: string) {
     if (!audioUrl) {
       return
@@ -78,7 +80,7 @@ class ClipPrograms extends React.Component<Props> {
           </div>
         </ResilientImage>
         {
-          audioUrl
+          audioUrl && !isIos()
           ? <div className={playAudio} onClick={() => this.playAudio(program, audioUrl)}>
               {programsScreenLabels.playAudio}
               <SvgIcon src={require('svg/audio.svg')} style={{ margin: 5 }} />
