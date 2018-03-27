@@ -1,5 +1,18 @@
 # Release Notes
 
+## VOA Farsi 1.6.2 (106020)
+
+### What's new
+
+- Favorites are sorted in the order in which you favorited them
+
+### Bugfixes
+
+- Fixed out of memory bug when scrolling quickly on an article
+- Programs screens now correctly displaying programs in right-to-left mode
+
+------------------------------------------------------
+
 ## VOA Farsi 1.6.0 (106000)
 
 ### What's new
