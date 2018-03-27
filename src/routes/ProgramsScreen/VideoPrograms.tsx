@@ -66,7 +66,7 @@ class ClipPrograms extends React.Component<Props> {
     const item = program[index]
 
     return (
-      <div key={key} style={style}>
+      <div key={key} style={style} dir='rtl'>
         <Ticket
           onPress={() => this.playVideo(item, item.image && item.image.url)}
           title={item.programTitle}

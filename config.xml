@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="106010" id="com.voanews.voafa" version="1.6.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="106020" id="com.voanews.voafa" version="1.6.2" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name short="صدای آمریكا">VOAFarsi</name>
     <description>
         تازه ترین خبرها، گزارشها، گفتگو، عکس و فیلم از آمریکا، ایران و جهان
