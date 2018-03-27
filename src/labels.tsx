@@ -117,7 +117,7 @@ export const settingsLabels = {
   sendFeedback: 'نظرتان را بگوئید',
   aboutVoa: 'صدای آمریکا (VOA) خبرها و اطلاعات درست، متعادل و جامع را برای مخاطبان در سراسر جهان منتشر می کند. صدای آمریکا کار خود را با رادیو در سال ۱۹۴۲ آغاز کرد و اکنون یک سازمان گسترده چند رسانه‌ای است. اکنون صدای آمریکا با مردم از طریق تلفن همراه و شبکه های اجتماعی با بیش از ۴۰ زبان در ارتباط است.',
   shareMessage: '',
-  feedbackEmail: 'lettersuser@voanews.com',
+  feedbackEmail: 'farsi@voanews.com',
   feedbackSubject: encodeURIComponent('صدای آمریكا'),
   feedbackBody: encodeURIComponent(''),
 }
