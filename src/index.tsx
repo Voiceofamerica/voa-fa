@@ -9,6 +9,7 @@ import './globalStyle.scss'
 
 import App from './containers/App'
 import { start } from 'helpers/psiphon'
+import 'helpers/pushNotifications'
 
 const rootElement = document.getElementById('app')
 
@@ -40,9 +41,9 @@ start().then(() => {
 
   render(App, () => {
     setTimeout(() => {
-      const splash = (navigator as any).splashscreen
-      if (splash) {
-        splash.hide()
+      const { splashscreen } = navigator
+      if (splashscreen) {
+        splashscreen.hide()
       }
     }, 3000)
   })
