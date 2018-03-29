@@ -5,6 +5,8 @@ import { AppContainer } from 'react-hot-loader'
 
 import * as moment from 'moment'
 
+import { momentLocale } from 'labels'
+
 import './globalStyle.scss'
 
 import App from './containers/App'
@@ -13,7 +15,7 @@ import 'helpers/pushNotifications'
 
 const rootElement = document.getElementById('app')
 
-moment.locale('fa')
+moment.locale(momentLocale)
 
 start().then(() => {
   let render = (Component, cb?) => {
@@ -23,6 +25,7 @@ start().then(() => {
       cb,
     )
   }
+
   if (module.hot) {
     render = Component => {
       ReactDOM.render(
@@ -49,8 +52,3 @@ start().then(() => {
   })
 }).catch(console.error)
 
-document.addEventListener(
-  'backbutton',
-  (ev) => { ev.preventDefault() },
-  false,
-)
