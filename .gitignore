@@ -61,6 +61,8 @@ buck-out/
 www/**/*
 plugins
 platforms
+/splash.png
+/icon.png
 
 # Temporary files
 temp
@@ -70,5 +72,3 @@ src/psiphon_config.json
 protected/*
 
 !**/.gitkeep
-
-icon.png
