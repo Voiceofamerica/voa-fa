@@ -67,7 +67,6 @@ temp
 coverage
 storyLoader.js
 psiphon_config.json
-ADBMobileConfig.json
 protected
 google-services.json
 GoogleService-Info.plist
