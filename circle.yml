@@ -32,6 +32,7 @@ jobs:
           paths:
             - "~/.npm"
             - "node_modules"
+      - run: unzip -P "$PROTECTED_PASS" protected.zip
       - run: npx cordova prepare android
       - run: npm run copy:assets:android
       - save_cache:
@@ -40,7 +41,6 @@ jobs:
             - "~/.android"
             - "plugins"
             - "platforms"
-      - run: unzip -P "$PROTECTED_PASS" protected.zip
       - run: npm run build:webpack
       - run: bash scripts/buildAndroid.sh
       - store_artifacts:
@@ -63,6 +63,7 @@ jobs:
           key: v3-voa-cordova-ios-{{ checksum "package-lock.json" }}-{{ checksum "config.xml" }}
       - run: bash scripts/setupiOS.sh
       - run: npm install
+      - run: unzip -P "$PROTECTED_PASS" protected.zip
       - run: npm run cordova:prepare
       - run: npm run generate
       - save_cache:
@@ -73,7 +74,6 @@ jobs:
             - "node_modules"
             - "plugins"
             - "platforms"
-      - run: unzip -P "$PROTECTED_PASS" protected.zip
       - run: npm run build:webpack
       - run: bash scripts/buildiOS.sh
       - store_artifacts:
@@ -91,10 +91,7 @@ workflows:
   test_and_build:
     jobs:
       - test
-      - build_android:
-          filters:
-            branches:
-              only: master
+      - build_android
       #- build_ios:
       #    filters:
       #      branches:
