@@ -82,6 +82,7 @@ export const INITIAL_STATE: AppSettings = {
   ],
   mediaPlaybackRate: 1,
   dailyNotificationOn: true,
+  usePsiphon: true,
   textSize: 1,
 }
 
