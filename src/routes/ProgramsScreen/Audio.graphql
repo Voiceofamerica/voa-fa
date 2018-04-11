@@ -1,14 +1,14 @@
-query ProgramClips {
+query ProgramAudio {
   content(source: fa, type: [Clip]) {
     id
-    title
-    introduction
     pubDate
-    audio {
-      url
-    }
     image {
       tiny
+    }
+    audio {
+      url
+      audioTitle
+      audioDescription
     }
   }
 }

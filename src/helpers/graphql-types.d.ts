@@ -188,6 +188,21 @@ export type LiveStreamQuery = {
   } | null > | null,
 };
 
+export type ProgramAudioQuery = {
+  content:  Array< {
+    id: number,
+    pubDate: string,
+    image:  {
+      tiny: string,
+    } | null,
+    audio:  {
+      url: string | null,
+      audioTitle: string | null,
+      audioDescription: string | null,
+    } | null,
+  } | null > | null,
+};
+
 export type ProgramClipsQuery = {
   content:  Array< {
     id: number,
