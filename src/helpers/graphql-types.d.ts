@@ -28,11 +28,12 @@ export type ArticleRouteQuery = {
       },
     } | null > | null,
     image:  {
-      url: string,
+      tiny: string,
+      hero: string,
     } | null,
     video:  {
       url: string | null,
-      thumbnail: string | null,
+      thumbnailTiny: string | null,
       videoDescription: string | null,
     } | null,
     audio:  {
@@ -48,7 +49,7 @@ export type ArticleRouteQuery = {
         id: number | null,
         photoTitle: string | null,
         photoDescription: string | null,
-        url: string | null,
+        url: string,
         order: number | null,
       } | null > | null,
     } | null > | null,
@@ -69,7 +70,9 @@ export type BreakingNewsRouteQuery = {
     introduction: string,
     pubDate: string,
     image:  {
-      url: string,
+      tiny: string,
+      thumb: string,
+      hero: string,
     } | null,
     video:  {
       url: string | null,
@@ -96,7 +99,9 @@ export type CategoryRouteQuery = {
     introduction: string,
     pubDate: string,
     image:  {
-      url: string,
+      tiny: string,
+      thumb: string,
+      hero: string,
     } | null,
     video:  {
       url: string | null,
@@ -126,7 +131,9 @@ export type EditorsChoiceRouteQuery = {
     introduction: string,
     pubDate: string,
     image:  {
-      url: string,
+      tiny: string,
+      thumb: string,
+      hero: string,
     } | null,
     video:  {
       url: string | null,
@@ -149,7 +156,9 @@ export type HomeRouteQuery = {
     introduction: string,
     pubDate: string,
     image:  {
-      url: string,
+      tiny: string,
+      thumb: string,
+      hero: string,
     } | null,
     video:  {
       url: string | null,
@@ -173,7 +182,7 @@ export type LiveStreamQuery = {
     programTitle: string | null,
     programDescription: string | null,
     image:  {
-      url: string,
+      tiny: string,
     } | null,
     url: string | null,
   } | null > | null,
@@ -189,7 +198,7 @@ export type ProgramClipsQuery = {
       url: string | null,
     } | null,
     image:  {
-      url: string,
+      tiny: string,
     } | null,
   } | null > | null,
 };
@@ -206,7 +215,7 @@ export type ProgramGalleriesQuery = {
       } | null > | null,
     } | null > | null,
     image:  {
-      url: string,
+      tiny: string,
     } | null,
   } | null > | null,
 };
@@ -218,7 +227,8 @@ export type ProgramLiveVideoQuery = {
     programTitle: string | null,
     programDescription: string | null,
     image:  {
-      url: string,
+      tiny: string,
+      hero: string,
     } | null,
     url: string | null,
   } | null > | null,
@@ -239,7 +249,7 @@ export type ProgramVideosQuery = {
     programTitle: string | null,
     programDescription: string | null,
     image:  {
-      url: string,
+      tiny: string,
     } | null,
     url: string | null,
   } | null > | null,
@@ -257,7 +267,7 @@ export type SearchQuery = {
     introduction: string,
     pubDate: string,
     image:  {
-      url: string,
+      tiny: string,
     } | null,
     video:  {
       url: string | null,

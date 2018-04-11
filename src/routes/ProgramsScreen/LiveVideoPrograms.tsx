@@ -14,7 +14,6 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
 import { programsScreenLabels } from 'labels'
 import { ProgramLiveVideoQuery } from 'helpers/graphql-types'
-import { mapImageUrl } from 'helpers/image'
 import { isIos } from 'helpers/platform'
 
 import TopNavTheme from './TopNavTheme'
@@ -43,7 +42,7 @@ class ClipPrograms extends React.Component<Props> {
       item.programTitle,
       item.programDescription,
       true,
-      item.image && item.image.url,
+      item.image && item.image.tiny,
     )
   }
 
@@ -57,7 +56,7 @@ class ClipPrograms extends React.Component<Props> {
       item.programTitle,
       item.programDescription,
       false,
-      item.image && item.image.url,
+      item.image && item.image.tiny,
     )
   }
 
@@ -73,7 +72,7 @@ class ClipPrograms extends React.Component<Props> {
 
     return (
       <div>
-        <ResilientImage src={program.image.url} onClick={() => this.playVideo(program)}>
+        <ResilientImage src={program.image.hero} onClick={() => this.playVideo(program)}>
           <div className={iconCircle}>
             <SvgIcon src={require('svg/video.svg')} />
           </div>
@@ -119,21 +118,6 @@ class ClipPrograms extends React.Component<Props> {
 const withQuery = graphql<QueryProps, ProgramLiveVideoQuery>(
   Query,
   {
-    props: ({ data }) => {
-      if (data && !data.loading && !data.error) {
-        data.live = data.live.map(c => {
-          return {
-            ...c,
-            image: c.image && {
-              ...c.image,
-              url: mapImageUrl(c.image.url, 'w500'),
-            },
-          }
-        })
-      }
-
-      return { data }
-    },
     options: {
       fetchPolicy: 'network-only',
     },

@@ -5,7 +5,8 @@ query ProgramLiveVideo {
     programTitle
     programDescription
     image {
-      url
+      tiny
+      hero
     }
     url
   }

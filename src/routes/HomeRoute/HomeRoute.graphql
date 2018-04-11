@@ -5,7 +5,9 @@ query HomeRoute {
     introduction
     pubDate
     image {
-      url
+      tiny
+      thumb
+      hero
     }
     video {
       url
