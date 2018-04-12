@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { push } from 'react-router-redux'
 import store from 'redux-store'
+import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'
 
 export const graphqlLanguage = 'fa'
 
@@ -30,20 +31,26 @@ export const circumventionDrawerLabels = {
   enabledContent: (
     <div>
       <p>
-        اتصال شما به VOA خصوصی، امن و ناشناس است
+        تماس شما به اپلیکیشن صدای آمریکا خصوصی، امن و مخفی است.
       </p>
       <p>
-        <a href='#' onClick={() => store.dispatch(push('/settings'))}>تنظیمات</a>
+        <a href='#' onClick={() => {
+          store.dispatch(push('/settings'))
+          store.dispatch(toggleCircumventionDrawer({ open: false }))
+        }}>تنظیمات</a>
       </p>
     </div>
   ),
   disabledContent: (
     <div>
       <p>
-        شما دسترسی به VOA در اینترنت باز است
+        شما در اینترنت آزاد به صدای آمریکا دسترسی دارید.
       </p>
       <p>
-        <a href='#' onClick={() => store.dispatch(push('/settings'))}>تنظیمات</a>
+        <a href='#' onClick={() => {
+          store.dispatch(push('/settings'))
+          store.dispatch(toggleCircumventionDrawer({ open: false }))
+        }}>تنظیمات</a>
       </p>
     </div>
   ),
@@ -137,8 +144,8 @@ export const settingsLabels = {
   feedbackSubject: encodeURIComponent('صدای آمریكا'),
   feedbackBody: encodeURIComponent(''),
   shareMessage: '',
-  psiphon: 'وضعیت دسترسی خصوصی و امن',
-  psiphonOn: 'بر',
+  psiphon: 'وضعیت دسترسی بصورت امن و خصوصی است.',
+  psiphonOn: 'روشن',
   psiphonOff: 'خاموش',
 }
 
