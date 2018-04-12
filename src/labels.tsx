@@ -1,5 +1,7 @@
 
 import * as React from 'react'
+import { push } from 'react-router-redux'
+import store from 'redux-store'
 
 export const graphqlLanguage = 'fa'
 
@@ -25,9 +27,24 @@ export const categorySettingsLabels = {
 }
 
 export const circumventionDrawerLabels = {
-  content: (
+  enabledContent: (
     <div>
-      اتصال شما به VOA خصوصی، امن و ناشناس است
+      <p>
+        اتصال شما به VOA خصوصی، امن و ناشناس است
+      </p>
+      <p>
+        <a href='#' onClick={() => store.dispatch(push('/settings'))}>تنظیمات</a>
+      </p>
+    </div>
+  ),
+  disabledContent: (
+    <div>
+      <p>
+        شما دسترسی به VOA در اینترنت باز است
+      </p>
+      <p>
+        <a href='#' onClick={() => store.dispatch(push('/settings'))}>تنظیمات</a>
+      </p>
     </div>
   ),
 }
@@ -120,9 +137,9 @@ export const settingsLabels = {
   feedbackSubject: encodeURIComponent('صدای آمریكا'),
   feedbackBody: encodeURIComponent(''),
   shareMessage: '',
-  psiphon: 'Use VPN?',
-  psiphonOn: 'Yes',
-  psiphonOff: 'No',
+  psiphon: 'وضعیت دسترسی خصوصی و امن',
+  psiphonOn: 'بر',
+  psiphonOff: 'خاموش',
 }
 
 export const textSettingsLabels = {
