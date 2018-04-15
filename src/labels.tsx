@@ -11,11 +11,6 @@ export const articleLabels = {
   shareMessage: '',
 }
 
-export const breakingNewsLabels = {
-  header: 'خبر فوری',
-  noNews: 'اکنون خبر شکستن وجود ندارد',
-}
-
 export const categorySettingsLabels = {
   header: 'مدیریت موضوعات',
   myCategories: 'موضوعات من',
@@ -53,14 +48,8 @@ export const homeLabels = {
 }
 
 export const introLabels = {
-  heading: 'Welcome to VoA!',
   content: 'به صدای آمریکا خوش آمدید',
   continue: 'رهسپار شدن',
-}
-
-export const liveStreamLabels = {
-  header: 'پخش زنده ',
-  notifyMe: 'پخش زنده خبر',
 }
 
 export const mediaPlayerLabels = {
@@ -75,16 +64,10 @@ export const mediaPlayerLabels = {
 }
 
 export const mediaSettingsLabels = {
-  header: 'تنظیم‌های ویدپو',
   normalSpeed: '1x',
   halfAgainSpeed: '1.5x',
   doubleSpeed: '2x',
   chooseSpeed: 'گزینه پخش دوباره',
-}
-
-export const notificationSettingsLabels = {
-  header: 'تنظیم‌های آگاه‌سازی',
-  dailyToggle: 'یادآوری روزانه',
 }
 
 export const programsScreenLabels = {
@@ -116,15 +99,14 @@ export const settingsLabels = {
   sendToFriends: 'ما را به دوستان‌تان معرفی کنید',
   sendFeedback: 'نظرتان را بگوئید',
   aboutVoa: 'صدای آمریکا (VOA) خبرها و اطلاعات درست، متعادل و جامع را برای مخاطبان در سراسر جهان منتشر می کند. صدای آمریکا کار خود را با رادیو در سال ۱۹۴۲ آغاز کرد و اکنون یک سازمان گسترده چند رسانه‌ای است. اکنون صدای آمریکا با مردم از طریق تلفن همراه و شبکه های اجتماعی با بیش از ۴۰ زبان در ارتباط است.',
-  shareMessage: '',
   feedbackEmail: 'farsi@voanews.com',
   feedbackSubject: encodeURIComponent('صدای آمریكا'),
   feedbackBody: encodeURIComponent(''),
+  shareMessage: '',
 }
 
 export const textSettingsLabels = {
-  header: 'تنظیم‌‌های متن',
-  chooseSize: 'اندازه فونت',
+  textSize: 'اندازه فونت',
   normalSize: 'کوچک',
   largeSize: 'متوسط',
   hugeSize: 'بزرگ',

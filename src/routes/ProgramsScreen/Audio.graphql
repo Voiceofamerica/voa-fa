@@ -4,6 +4,7 @@ query ProgramAudio {
     pubDate
     image {
       tiny
+      hero
     }
     audio {
       url
