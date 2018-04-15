@@ -9,6 +9,7 @@ export const articleLabels = {
   updatedOn: (date: string) => `${date}`,
   relatedContent: 'مطالب مرتبط',
   shareMessage: '',
+  galleryLoading: 'در حال بارگذاری',
 }
 
 export const categorySettingsLabels = {
