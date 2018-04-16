@@ -14,7 +14,7 @@ import AppState from 'types/AppState'
 import Category from 'types/Category'
 
 import * as Query from './CategorySettings.graphql'
-import { CategorySettingsQuery, CategoryRouteQueryVariables, CategorySettingsQueryVariables } from 'helpers/graphql-types'
+import { CategorySettingsQuery, CategorySettingsQueryVariables } from 'helpers/graphql-types'
 import Loader from 'components/Loader'
 import { graphqlAudience, categorySettingsLabels, homeLabels } from 'labels'
 
