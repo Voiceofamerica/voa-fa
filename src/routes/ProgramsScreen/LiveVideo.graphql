@@ -1,5 +1,5 @@
-query ProgramLiveVideo {
-  live: program(source: fa, type: [BroadcastProgram]) {
+query ProgramLiveVideo($source: Audience!) {
+  live: program(source: $source, type: [BroadcastProgram]) {
     date
     timeLeft
     programTitle
@@ -10,7 +10,7 @@ query ProgramLiveVideo {
     }
     url
   }
-  audio: program(source: fa, type: [Clip]) {
+  audio: program(source: $source, type: [Clip]) {
     url
   }
 }

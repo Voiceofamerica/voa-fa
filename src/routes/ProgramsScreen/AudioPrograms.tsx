@@ -13,8 +13,8 @@ import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 import Loader from 'components/Loader'
 import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
-import { ProgramAudioQuery } from 'helpers/graphql-types'
-import { programsScreenLabels } from 'labels'
+import { ProgramAudioQuery, ProgramAudioQueryVariables } from 'helpers/graphql-types'
+import { graphqlAudience, programsScreenLabels } from 'labels'
 
 import TopNavTheme from './TopNavTheme'
 import * as Query from './Audio.graphql'
@@ -78,6 +78,13 @@ class AudioPrograms extends React.Component<Props> {
 
 const withQuery = graphql<QueryProps, ProgramAudioQuery>(
   Query,
+  {
+    options: {
+      variables: {
+        source: graphqlAudience,
+      } as ProgramAudioQueryVariables,
+    },
+  },
 )
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => {

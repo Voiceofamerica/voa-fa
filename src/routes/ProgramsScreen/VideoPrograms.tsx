@@ -14,7 +14,7 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
 // import { programsScreenLabels } from 'labels'
 import { ProgramVideosQuery, ProgramVideosQueryVariables } from 'helpers/graphql-types'
-import { programsScreenLabels } from 'labels'
+import { graphqlAudience, programsScreenLabels } from 'labels'
 
 import Params from './Params'
 import * as Query from './Videos.graphql'
@@ -74,6 +74,7 @@ const withQuery = graphql<QueryProps, ProgramVideosQuery>(
   {
     options: (ownProps: OwnProps): QueryOpts<ProgramVideosQueryVariables> => ({
       variables: {
+        source: graphqlAudience,
         zone: parseInt(ownProps.match.params.zone || '0', 10),
       },
     }),

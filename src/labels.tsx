@@ -1,7 +1,8 @@
 
 import * as React from 'react'
+import { Audience } from 'helpers/graphql-types'
 
-export const graphqlLanguage = 'fa'
+export const graphqlAudience = Audience.fa
 
 export const momentLocale = 'fa'
 

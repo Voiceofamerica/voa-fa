@@ -12,8 +12,8 @@ import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 import Loader from 'components/Loader'
 import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
-import { programsScreenLabels } from 'labels'
-import { ProgramLiveVideoQuery } from 'helpers/graphql-types'
+import { graphqlAudience, programsScreenLabels } from 'labels'
+import { ProgramLiveVideoQuery, ProgramLiveVideoQueryVariables } from 'helpers/graphql-types'
 import { isIos } from 'helpers/platform'
 
 import TopNavTheme from './TopNavTheme'
@@ -119,6 +119,9 @@ const withQuery = graphql<QueryProps, ProgramLiveVideoQuery>(
   Query,
   {
     options: {
+      variables: {
+        source: graphqlAudience,
+      } as ProgramLiveVideoQueryVariables,
       fetchPolicy: 'network-only',
     },
   },
