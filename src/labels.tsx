@@ -10,7 +10,7 @@ import { Audience } from 'helpers/graphql-types'
 setAnalyticsOptions({
   language: 'farsi',
 })
-setDirection('ltr')
+setDirection('rtl')
 
 export const graphqlAudience = Audience.fa
 
