@@ -6,7 +6,7 @@ import { graphql, ChildProps } from 'react-apollo'
 import { connect, Dispatch } from 'react-redux'
 
 import TicketList from '@voiceofamerica/voa-shared/components/TicketList'
-import { fromAudioArticleList } from '@voiceofamerica/voa-shared/helpers/itemList'
+import { fromAudioArticleList } from '@voiceofamerica/voa-shared/helpers/itemListHelper'
 import TopNav, { CenterText } from '@voiceofamerica/voa-shared/components/TopNav'
 import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 
