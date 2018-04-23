@@ -140,10 +140,11 @@ class ProgramsScreen extends React.Component<Props> {
   renderPrograms () {
     const { history, match } = this.props
     const { type = VIDEO } = match.params
+
     if (type === LIVE) {
       return <LiveVideoPrograms history={history} />
     } else if (type === VIDEO) {
-      return <VideoPrograms history={history} match={match} />
+      return <VideoPrograms history={history} zoneId={this.getZoneId()} />
     } else if (type === AUDIO) {
       return <AudioPrograms history={history} />
     } else {
@@ -170,11 +171,13 @@ class ProgramsScreen extends React.Component<Props> {
   }
 
   renderTopNav () {
-    const { zone, type = VIDEO } = this.props.match.params
+    const { type = VIDEO } = this.props.match.params
 
     if (type !== VIDEO) {
       return null
     }
+
+    const selectedId = this.getZoneId()
 
     return (
       <ThemeProvider value={TopNavTheme}>
@@ -182,7 +185,7 @@ class ProgramsScreen extends React.Component<Props> {
           <StaticItem />
           {
             PROGRAM_ZONES.map(({ id, name }, idx) => {
-              const selected = zone ? parseInt(zone, 10) === id : idx === 0
+              const selected = selectedId === id
 
               return (
                 <TopNavItem
@@ -211,6 +214,11 @@ class ProgramsScreen extends React.Component<Props> {
         {this.renderProgramTypes()}
       </div>
     )
+  }
+
+  private getZoneId = () => {
+    const { zone = PROGRAM_ZONES[0].id } = this.props.match.params
+    return typeof zone === 'number' ? zone : parseInt(zone, 10)
   }
 }
 
