@@ -152,7 +152,7 @@ class ProgramsScreen extends React.Component<Props> {
   }
 
   renderProgramTypes () {
-    const { type = VIDEO } = this.props.match.params
+    const { type = LIVE } = this.props.match.params
 
     return (
       <div className={programTypeNav}>
