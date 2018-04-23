@@ -184,7 +184,7 @@ class ProgramsScreen extends React.Component<Props> {
         <TopNav rtl>
           <StaticItem />
           {
-            PROGRAM_ZONES.map(({ id, name }, idx) => {
+            PROGRAM_ZONES.map(({ id, name }) => {
               const selected = selectedId === id
 
               return (
