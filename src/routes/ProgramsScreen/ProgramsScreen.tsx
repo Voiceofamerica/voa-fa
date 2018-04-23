@@ -140,12 +140,12 @@ class ProgramsScreen extends React.Component<Props> {
   renderPrograms () {
     const { history, match } = this.props
     const { type = VIDEO } = match.params
-    if (type === VIDEO) {
+    if (type === LIVE) {
+      return <LiveVideoPrograms history={history} />
+    } else if (type === VIDEO) {
       return <VideoPrograms history={history} match={match} />
     } else if (type === AUDIO) {
       return <AudioPrograms history={history} />
-    } else if (type === LIVE) {
-      return <LiveVideoPrograms history={history} />
     } else {
       throw new Error(`Invalid programType ${type}`)
     }
@@ -156,14 +156,14 @@ class ProgramsScreen extends React.Component<Props> {
 
     return (
       <div className={programTypeNav}>
+        <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
+          {programsScreenLabels.liveHeader}
+        </div>
         <div className={type === VIDEO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(VIDEO)}>
           {programsScreenLabels.videos}
         </div>
         <div className={type === AUDIO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(AUDIO)}>
           {programsScreenLabels.audio}
-        </div>
-        <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
-          {programsScreenLabels.liveHeader}
         </div>
       </div>
     )
