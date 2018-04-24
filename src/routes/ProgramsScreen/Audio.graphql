@@ -1,9 +1,10 @@
-query ProgramAudio {
-  content(source: fa, type: [Clip]) {
+query ProgramAudio($source: Audience!) {
+  content(source: $source, type: [Clip]) {
     id
     pubDate
     image {
       tiny
+      hero
     }
     audio {
       url

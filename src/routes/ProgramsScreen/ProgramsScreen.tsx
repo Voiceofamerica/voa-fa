@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router'
 import TopNav, { TopNavItem, StaticItem } from '@voiceofamerica/voa-shared/components/TopNav'
 import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
 
-import analytics, { AnalyticsProps } from 'helpers/analytics'
+import analytics, { AnalyticsProps } from '@voiceofamerica/voa-shared/helpers/analyticsHelper'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Category from 'types/Category'
 import { programsScreenLabels } from 'labels'
@@ -140,49 +140,52 @@ class ProgramsScreen extends React.Component<Props> {
   renderPrograms () {
     const { history, match } = this.props
     const { type = VIDEO } = match.params
-    if (type === VIDEO) {
-      return <VideoPrograms history={history} match={match} />
+
+    if (type === LIVE) {
+      return <LiveVideoPrograms history={history} />
+    } else if (type === VIDEO) {
+      return <VideoPrograms history={history} zoneId={this.getZoneId()} />
     } else if (type === AUDIO) {
       return <AudioPrograms history={history} />
-    } else if (type === LIVE) {
-      return <LiveVideoPrograms history={history} />
     } else {
       throw new Error(`Invalid programType ${type}`)
     }
   }
 
   renderProgramTypes () {
-    const { type = VIDEO } = this.props.match.params
+    const { type = LIVE } = this.props.match.params
 
     return (
       <div className={programTypeNav}>
+        <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
+          {programsScreenLabels.liveHeader}
+        </div>
         <div className={type === VIDEO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(VIDEO)}>
           {programsScreenLabels.videos}
         </div>
         <div className={type === AUDIO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(AUDIO)}>
           {programsScreenLabels.audio}
         </div>
-        <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
-          {programsScreenLabels.liveHeader}
-        </div>
       </div>
     )
   }
 
   renderTopNav () {
-    const { zone, type = VIDEO } = this.props.match.params
+    const { type = VIDEO } = this.props.match.params
 
     if (type !== VIDEO) {
       return null
     }
+
+    const selectedId = this.getZoneId()
 
     return (
       <ThemeProvider value={TopNavTheme}>
         <TopNav rtl>
           <StaticItem />
           {
-            PROGRAM_ZONES.map(({ id, name }, idx) => {
-              const selected = zone ? parseInt(zone, 10) === id : idx === 0
+            PROGRAM_ZONES.map(({ id, name }) => {
+              const selected = selectedId === id
 
               return (
                 <TopNavItem
@@ -211,6 +214,11 @@ class ProgramsScreen extends React.Component<Props> {
         {this.renderProgramTypes()}
       </div>
     )
+  }
+
+  private getZoneId = () => {
+    const { zone = PROGRAM_ZONES[0].id } = this.props.match.params
+    return typeof zone === 'number' ? zone : parseInt(zone, 10)
   }
 }
 

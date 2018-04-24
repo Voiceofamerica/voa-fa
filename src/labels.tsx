@@ -3,20 +3,27 @@ import * as React from 'react'
 import { push } from 'react-router-redux'
 import store from 'redux-store'
 import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'
+import * as moment from 'moment'
 
-export const graphqlLanguage = 'fa'
+import { setAnalyticsOptions } from '@voiceofamerica/voa-shared/helpers/analyticsHelper'
+import { setDirection } from '@voiceofamerica/voa-shared/helpers/textDirectionHelper'
 
-export const momentLocale = 'fa'
+import { Audience } from 'helpers/graphql-types'
+
+setAnalyticsOptions({
+  language: 'farsi',
+})
+setDirection('rtl')
+
+export const graphqlAudience = Audience.fa
+
+moment.locale('fa')
 
 export const articleLabels = {
   updatedOn: (date: string) => `${date}`,
   relatedContent: 'مطالب مرتبط',
   shareMessage: '',
-}
-
-export const breakingNewsLabels = {
-  header: 'خبر فوری',
-  noNews: 'اکنون خبر شکستن وجود ندارد',
+  galleryLoading: 'در حال بارگذاری',
 }
 
 export const categorySettingsLabels = {
@@ -77,14 +84,8 @@ export const homeLabels = {
 }
 
 export const introLabels = {
-  heading: 'Welcome to VoA!',
   content: 'به صدای آمریکا خوش آمدید',
   continue: 'رهسپار شدن',
-}
-
-export const liveStreamLabels = {
-  header: 'پخش زنده ',
-  notifyMe: 'پخش زنده خبر',
 }
 
 export const mediaPlayerLabels = {
@@ -99,16 +100,10 @@ export const mediaPlayerLabels = {
 }
 
 export const mediaSettingsLabels = {
-  header: 'تنظیم‌های ویدپو',
   normalSpeed: '1x',
   halfAgainSpeed: '1.5x',
   doubleSpeed: '2x',
   chooseSpeed: 'گزینه پخش دوباره',
-}
-
-export const notificationSettingsLabels = {
-  header: 'تنظیم‌های آگاه‌سازی',
-  dailyToggle: 'یادآوری روزانه',
 }
 
 export const programsScreenLabels = {
@@ -150,8 +145,7 @@ export const settingsLabels = {
 }
 
 export const textSettingsLabels = {
-  header: 'تنظیم‌‌های متن',
-  chooseSize: 'اندازه فونت',
+  textSize: 'اندازه فونت',
   normalSize: 'کوچک',
   largeSize: 'متوسط',
   hugeSize: 'بزرگ',

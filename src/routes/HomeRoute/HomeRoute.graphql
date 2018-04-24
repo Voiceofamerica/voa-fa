@@ -1,5 +1,5 @@
-query HomeRoute {
-  content(source: fa, type: [Article, Video, PhotoGallery, Clip], topNews: true) {
+query HomeRoute($source: Audience!) {
+  content(source: $source, type: [Article, Video, PhotoGallery, Clip], topNews: true) {
     id
     title
     introduction

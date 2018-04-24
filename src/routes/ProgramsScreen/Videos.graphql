@@ -1,5 +1,5 @@
-query ProgramVideos($zone: Int) {
-  program(source: fa, type: [Video], zoneId: $zone) {
+query ProgramVideos($source: Audience!, $zone: Int) {
+  program(source: $source, type: [Video], zoneId: $zone) {
     id
     date
     timeLeft
