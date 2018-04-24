@@ -51,6 +51,7 @@ export default (options: PlayMediaOptions) =>
           ...options,
           originalMediaUrl,
           keepLocation: playing,
+          noDrawerToggle: playing,
         }))
         playing = true
         return
@@ -66,6 +67,7 @@ export default (options: PlayMediaOptions) =>
             mediaUrl,
             originalMediaUrl,
             keepLocation: playing,
+            noDrawerToggle: playing,
           }))
           playing = true
         })

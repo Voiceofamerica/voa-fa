@@ -79,10 +79,14 @@
 
       .settingsItem {
         padding: 0;
-      }
 
-      .active {
-        color: $voa-blue;
+        &.active:not(.disabled) {
+          color: $voa-blue;
+        }
+
+        &.disabled {
+          color: $voa-light-grey !important;
+        }
       }
     }
 

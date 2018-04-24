@@ -1,5 +1,8 @@
 
 import * as React from 'react'
+import { push } from 'react-router-redux'
+import store from 'redux-store'
+import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'
 import * as moment from 'moment'
 
 import { setAnalyticsOptions } from '@voiceofamerica/voa-shared/helpers/analyticsHelper'
@@ -32,9 +35,30 @@ export const categorySettingsLabels = {
 }
 
 export const circumventionDrawerLabels = {
-  content: (
+  enabledContent: (
     <div>
-      اتصال شما به VOA خصوصی، امن و ناشناس است
+      <p>
+        تماس شما به اپلیکیشن صدای آمریکا خصوصی، امن و مخفی است.
+      </p>
+      <p>
+        <a href='#' onClick={() => {
+          store.dispatch(push('/settings'))
+          store.dispatch(toggleCircumventionDrawer({ open: false }))
+        }}>تنظیمات</a>
+      </p>
+    </div>
+  ),
+  disabledContent: (
+    <div>
+      <p>
+        شما در اینترنت آزاد به صدای آمریکا دسترسی دارید.
+      </p>
+      <p>
+        <a href='#' onClick={() => {
+          store.dispatch(push('/settings'))
+          store.dispatch(toggleCircumventionDrawer({ open: false }))
+        }}>تنظیمات</a>
+      </p>
     </div>
   ),
 }
@@ -115,6 +139,11 @@ export const settingsLabels = {
   feedbackSubject: encodeURIComponent('صدای آمریكا'),
   feedbackBody: encodeURIComponent(''),
   shareMessage: '',
+  psiphon: 'وضعیت دسترسی بصورت امن و خصوصی است.',
+  psiphonOn: 'روشن',
+  psiphonOff: 'خاموش',
+  takeEffectOnRestart: 'برای انجام این کار، دوباره راه اندازی کنید',
+  okay: 'باشه',
 }
 
 export const textSettingsLabels = {
