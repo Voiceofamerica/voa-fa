@@ -142,6 +142,8 @@ export const settingsLabels = {
   psiphon: 'وضعیت دسترسی بصورت امن و خصوصی است.',
   psiphonOn: 'روشن',
   psiphonOff: 'خاموش',
+  takeEffectOnRestart: 'برای انجام این کار، دوباره راه اندازی کنید',
+  okay: 'باشه',
 }
 
 export const textSettingsLabels = {
