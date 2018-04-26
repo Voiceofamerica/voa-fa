@@ -4,6 +4,7 @@ import { push } from 'react-router-redux'
 import store from 'redux-store'
 import toggleCircumventionDrawer from 'redux-store/actions/toggleCircumventionDrawer'
 import * as moment from 'moment'
+import 'moment/locale/fa'
 
 import { setAnalyticsOptions } from '@voiceofamerica/voa-shared/helpers/analyticsHelper'
 import { setDirection } from '@voiceofamerica/voa-shared/helpers/textDirectionHelper'
@@ -12,7 +13,13 @@ import { Audience } from 'helpers/graphql-types'
 
 setAnalyticsOptions({
   language: 'farsi',
+  languageService: 'voa persian',
+  propertyName: 'voa persian news app',
+  propertyId: '343',
+  rsidAccount: 'bbgvoa.persian.streaming.app',
+  reportSuite: 'bbgvoa.persian.streaming.app',
 })
+
 setDirection('rtl')
 
 export const graphqlAudience = Audience.fa
