@@ -168,13 +168,13 @@ class ArticleRouteBase extends React.Component<Props> {
         className={mediaButton}
         onClick={() => playMedia(video.url, article.title, video.videoDescription, true, video.thumbnailTiny)}
       >
-        <SvgIcon src={videoSvg} className={mediaButtonIcon}/>
+        <SvgIcon src={videoSvg} className={mediaButtonIcon} />
       </IconItem>
     )
   }
 
   renderAudio () {
-    const { data, playMedia } = this.props
+    const { data, playMedia, analytics } = this.props
     const article = data.content[0]
     const { audio } = article
 
@@ -183,11 +183,15 @@ class ArticleRouteBase extends React.Component<Props> {
     }
 
     const imgUrl = article.image && article.image.hero
+    const onClick = () => {
+      playMedia(audio.url, audio.audioTitle, audio.audioDescription, false, imgUrl)
+      analytics.
+    }
 
     return (
       <IconItem
         className={mediaButton}
-        onClick={() => playMedia(audio.url, audio.audioTitle, audio.audioDescription, false, imgUrl)}
+        onClick={}
       >
         <SvgIcon src={audioSvg} className={mediaButtonIcon}/>
       </IconItem>
@@ -273,7 +277,7 @@ class ArticleRouteBase extends React.Component<Props> {
   private renderGallery = () => {
     const { data } = this.props
     const article = data.content[0]
-    if (article.photoGallery) {
+    if (!article.photoGallery) {
       return null
     }
 
@@ -288,21 +292,30 @@ class ArticleRouteBase extends React.Component<Props> {
     if (!this.props.data.content || !this.props.data.content[0]) {
       return
     }
+    const article = this.props.data.content[0]
     const id = this.props.match.params.id
-    const articleTitle = this.props.data.content[0].title
-    const authors = this.props.data.content[0].authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
+    const authors = article.authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
 
-    this.props.analytics.shareArticle({
-      id,
-      articleTitle,
-      authors,
-    }).catch()
-
-    const { url } = this.props.data.content[0]
+    const {
+      url,
+      title: articleTitle,
+      pubDate,
+    } = article
 
     window.plugins.socialsharing.shareWithOptions({
       message: articleLabels.shareMessage,
       url,
+    }, ({ completed, app }) => {
+      console.log('shared with:', app)
+      if (completed) {
+        this.props.analytics.shareArticle({
+          id,
+          articleTitle,
+          authors,
+          pubDate,
+          shareType: app && app.toString(),
+        }).catch()
+      }
     })
   }
 
@@ -312,8 +325,7 @@ class ArticleRouteBase extends React.Component<Props> {
     }
     const { title, authors, pubDate, content } = this.props.data.content[0]
     const authorNames = authors
-      .map(auth => auth.name)
-      .map(name => `${name.first} ${name.last}`)
+      .map(({ name: { first, last } }) => `${first} ${last}`)
 
     generatePDF({
       title,
@@ -327,14 +339,22 @@ class ArticleRouteBase extends React.Component<Props> {
     if (!this.props.data.content || !this.props.data.content[0]) {
       return
     }
+
+    const article = this.props.data.content[0]
     const id = this.props.match.params.id
-    const articleTitle = this.props.data.content[0].title
-    const authors = this.props.data.content[0].authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
+    const authors = article.authors
+      .map(({ name: { first, last } }) => `${first} ${last}`).join('; ')
+
+    const {
+      title: articleTitle,
+      pubDate,
+    } = article
 
     this.props.analytics.favoriteArticle({
       id,
       articleTitle,
       authors,
+      pubDate,
     }).catch()
     this.props.toggleFavorite()
   }
@@ -367,11 +387,24 @@ const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: OwnProps): Dispat
   }
 }
 
-const withAnalytics = analytics<Props>(({ data }) => ({
-  state: data.content && data.content[0] && data.content[0].title,
-  title: data.content && data.content[0] && data.content[0].title,
-  skip: data.loading || !data.content || !data.content[0],
-}))
+const withAnalytics = analytics<Props>(({ data }) => {
+  const {
+    id = undefined,
+    title = undefined,
+    authors = [],
+    pubDate = undefined,
+  } = data.content && data.content[0] || {}
+
+  return {
+    skip: data.loading || !data.content || !data.content[0],
+    itemType: 'article',
+    state: title,
+    title,
+    byline: authors.map(({ name: { first, last } }) => `${first} ${last}`).join('; '),
+    pubDate,
+    articleId: id,
+  }
+})
 
 const withQuery = graphql(
   Query,
