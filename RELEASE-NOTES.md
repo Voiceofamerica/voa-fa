@@ -2,3 +2,4 @@
 
 ## Since last release:
 * Added support for turning off Psiphon in Settings
+* Analytics updates
