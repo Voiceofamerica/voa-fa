@@ -14,7 +14,6 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 
 import { graphqlAudience, programsScreenLabels } from 'labels'
 import { ProgramLiveVideoQuery, ProgramLiveVideoQueryVariables } from 'helpers/graphql-types'
-import { isIos } from '@voiceofamerica/voa-shared/helpers/platformHelper'
 
 import TopNavTheme from './TopNavTheme'
 import * as Query from './LiveVideo.graphql'
@@ -81,7 +80,7 @@ class ClipPrograms extends React.Component<Props> {
           </div>
         </ResilientImage>
         {
-          audioUrl && !isIos()
+          audioUrl
           ? <div className={playAudio} onClick={() => this.playAudio(program, audioUrl)}>
               {programsScreenLabels.playAudio}
               <SvgIcon src={require('svg/audio.svg')} style={{ margin: 5 }} />
