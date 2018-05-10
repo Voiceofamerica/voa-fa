@@ -39,6 +39,7 @@ export const categorySettingsLabels = {
   allCategories: 'همه موضوع‌ها',
   dragAndDrop: 'محل تنضیم موضوعات  در “خانه ” بر حسب اولویت',
   headlinesFirst: 'اول لیست سرخط‌ها',
+  cancel: 'لغو',
 }
 
 export const circumventionDrawerLabels = {
