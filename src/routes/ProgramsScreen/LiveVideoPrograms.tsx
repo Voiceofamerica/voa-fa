@@ -74,7 +74,7 @@ class ClipPrograms extends React.Component<Props> {
       <div>
         <ResilientImage src={program.image.hero} onClick={() => this.playVideo(program)}>
           <div className={iconCircle}>
-            <SvgIcon src={require('svg/video.svg')} />
+            <SvgIcon src='video' />
           </div>
           <div className={liveBlock}>
             {programsScreenLabels.live}
@@ -84,7 +84,7 @@ class ClipPrograms extends React.Component<Props> {
           audioUrl && !isIos()
           ? <div className={playAudio} onClick={() => this.playAudio(program, audioUrl)}>
               {programsScreenLabels.playAudio}
-              <SvgIcon src={require('svg/audio.svg')} style={{ margin: 5 }} />
+              <SvgIcon src='audio' style={{ margin: 5 }} />
             </div>
           : null
         }
