@@ -37,7 +37,7 @@ export const categorySettingsLabels = {
   header: 'مدیریت موضوعات',
   myCategories: 'موضوعات من',
   allCategories: 'همه موضوع‌ها',
-  dragAndDrop: 'محل تنضیم موضوعات  در “خانه ” بر حسب اولویت',
+  dragAndDrop: 'محل تنظیم موضوعات  در “خانه ” بر حسب اولویت',
   headlinesFirst: 'اول لیست سرخط‌ها',
   cancel: 'لغو',
 }
