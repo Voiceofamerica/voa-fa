@@ -2,13 +2,12 @@
 import * as React from 'react'
 import { compose } from 'redux'
 import { History } from 'history'
-import { graphql, ChildProps } from 'react-apollo'
+import { graphql, ChildProps, QueryOpts } from 'react-apollo'
 import { connect, Dispatch } from 'react-redux'
+import * as moment from 'moment'
 
 import TicketList from '@voiceofamerica/voa-shared/components/TicketList'
-import { fromAudioArticleList } from '@voiceofamerica/voa-shared/helpers/itemListHelper'
-import TopNav, { CenterText } from '@voiceofamerica/voa-shared/components/TopNav'
-import ThemeProvider from '@voiceofamerica/voa-shared/components/ThemeProvider'
+import { fromProgramList } from '@voiceofamerica/voa-shared/helpers/itemListHelper'
 
 import Loader from 'components/Loader'
 import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
@@ -16,12 +15,12 @@ import playMedia from 'redux-store/thunks/playMediaFromPsiphon'
 import { ProgramAudioQuery, ProgramAudioQueryVariables } from 'helpers/graphql-types'
 import { graphqlAudience, programsScreenLabels } from 'labels'
 
-import TopNavTheme from './TopNavTheme'
 import * as Query from './Audio.graphql'
 import { programContent, emptyContent } from './ProgramsScreen.scss'
 
 interface OwnProps {
   history: History
+  zoneId: number
 }
 
 interface DispatchProps {
@@ -37,16 +36,9 @@ class AudioPrograms extends React.Component<Props> {
 
     return (
       <div className={programContent}>
-        <ThemeProvider value={TopNavTheme}>
-          <TopNav rtl style={{ zIndex: 12 }}>
-            <CenterText>
-              {programsScreenLabels.audio}
-            </CenterText>
-          </TopNav>
-        </ThemeProvider>
         <Loader data={data}>
           <TicketList
-            items={fromAudioArticleList(data.content)}
+            items={fromProgramList(data.audioProgram, d => moment(d).format('L'))}
             onItemClick={this.playAudio}
             emptyContent={this.renderEmpty()}
           />
@@ -64,14 +56,14 @@ class AudioPrograms extends React.Component<Props> {
   }
 
   private playAudio = (id: number) => {
-    const { data: { content } } = this.props
-    const article = content.find(item => item.id === id)
-    const { url, audioTitle, audioDescription } = article.audio
+    const { data: { audioProgram } } = this.props
+    const program = audioProgram.find(item => item.id === id)
+    const { url, programTitle, programDescription, image } = program
     this.props.playMedia(
       url,
-      audioTitle,
-      audioDescription,
-      article.image && article.image.hero,
+      programTitle,
+      programDescription,
+      image && image.hero,
     )
   }
 }
@@ -79,11 +71,12 @@ class AudioPrograms extends React.Component<Props> {
 const withQuery = graphql<QueryProps, ProgramAudioQuery>(
   Query,
   {
-    options: {
+    options: (ownProps: OwnProps): QueryOpts<ProgramAudioQueryVariables> => ({
       variables: {
         source: graphqlAudience,
-      } as ProgramAudioQueryVariables,
-    },
+        category: ownProps.zoneId,
+      },
+    }),
   },
 )
 

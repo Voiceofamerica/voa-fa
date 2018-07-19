@@ -11,19 +11,19 @@ import { programsScreenLabels } from 'labels'
 
 import TopNavTheme from './TopNavTheme'
 import Params from './Params'
-import LiveVideoPrograms from './LiveVideoPrograms'
 import VideoPrograms from './VideoPrograms'
 import AudioPrograms from './AudioPrograms'
+import LiveVideoPrograms from './LiveVideoPrograms'
 import { programsScreen, programTypeNav, typeItem, active } from './ProgramsScreen.scss'
 
-type ProgramType = 'live' | 'video' | 'audio'
+type ProgramType = 'audio' | 'video' | 'live'
 
 const LIVE: ProgramType = 'live'
 const VIDEO: ProgramType = 'video'
 const AUDIO: ProgramType = 'audio'
 const DEFAULT = LIVE
 
-const PROGRAM_ZONES: Category[] = [
+const VIDEO_ZONES: Category[] = [
   {
     id: 0,
     name: programsScreenLabels.all,
@@ -117,6 +117,13 @@ const PROGRAM_ZONES: Category[] = [
   // Strange (mpd) - 166645
 ]
 
+const AUDIO_ZONES: Category[] = [
+  {
+    id: 0,
+    name: programsScreenLabels.all,
+  },
+]
+
 interface Props extends RouteComponentProps<Params>, AnalyticsProps {
 }
 
@@ -141,13 +148,12 @@ class ProgramsScreen extends React.Component<Props> {
   renderPrograms () {
     const { history, match } = this.props
     const { type = DEFAULT } = match.params
-
     if (type === LIVE) {
       return <LiveVideoPrograms history={history} />
     } else if (type === VIDEO) {
       return <VideoPrograms history={history} zoneId={this.getZoneId()} />
     } else if (type === AUDIO) {
-      return <AudioPrograms history={history} />
+      return <AudioPrograms history={history} zoneId={this.getZoneId()} />
     } else {
       throw new Error(`Invalid programType ${type}`)
     }
@@ -159,7 +165,7 @@ class ProgramsScreen extends React.Component<Props> {
     return (
       <div className={programTypeNav}>
         <div className={type === LIVE ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(LIVE)}>
-          {programsScreenLabels.liveHeader}
+          {programsScreenLabels.live}
         </div>
         <div className={type === VIDEO ? `${typeItem} ${active}` : typeItem} onClick={() => this.setProgramType(VIDEO)}>
           {programsScreenLabels.videos}
@@ -168,40 +174,6 @@ class ProgramsScreen extends React.Component<Props> {
           {programsScreenLabels.audio}
         </div>
       </div>
-    )
-  }
-
-  renderTopNav () {
-    const { type = DEFAULT } = this.props.match.params
-
-    if (type !== VIDEO) {
-      return null
-    }
-
-    const selectedId = this.getZoneId()
-
-    return (
-      <ThemeProvider value={TopNavTheme}>
-        <TopNav flex rtl>
-          <StaticItem />
-          {
-            PROGRAM_ZONES.map(({ id, name }) => {
-              const selected = selectedId === id
-
-              return (
-                <TopNavItem
-                  key={id}
-                  selected={selected}
-                  onClick={() => this.setZoneId(id)}
-                >
-                  {name}
-                </TopNavItem>
-              )
-            })
-          }
-          <TopNavItem />
-        </TopNav>
-      </ThemeProvider>
     )
   }
 
@@ -218,8 +190,50 @@ class ProgramsScreen extends React.Component<Props> {
   }
 
   private getZoneId = () => {
-    const { zone = PROGRAM_ZONES[0].id } = this.props.match.params
+    const { zone = 0 } = this.props.match.params
     return typeof zone === 'number' ? zone : parseInt(zone, 10)
+  }
+
+  private renderTopNav () {
+    const { type = DEFAULT } = this.props.match.params
+
+    if (type === VIDEO) {
+      return this.renderTopNavFromItems(VIDEO_ZONES)
+    } else if (type === AUDIO) {
+      return this.renderTopNavFromItems(AUDIO_ZONES)
+    } else if (type === LIVE) {
+      return <TopNav />
+    } else {
+      throw new Error(`Unrecognized program type ${type}`)
+    }
+  }
+
+  private renderTopNavFromItems (items: Category[]) {
+    const zoneId = this.getZoneId()
+
+    return (
+      <ThemeProvider value={TopNavTheme}>
+        <TopNav flex>
+          <StaticItem />
+          {
+            items.map(({ id, name }) => {
+              const selected = zoneId === id
+
+              return (
+                <TopNavItem
+                  key={id}
+                  selected={selected}
+                  onClick={() => this.setZoneId(id)}
+                >
+                  {name}
+                </TopNavItem>
+              )
+            })
+          }
+          <TopNavItem />
+        </TopNav>
+      </ThemeProvider>
+    )
   }
 }
 
