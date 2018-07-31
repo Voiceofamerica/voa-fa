@@ -125,8 +125,8 @@ export const programsScreenLabels = {
 }
 
 export const psiphonLoadingLabels = {
-  bold: 'Please be patient.',
-  text: 'This may take a few minutes while we gather the best information for you.',
+  bold: '',
+  text: 'لطفا صبور باشید، ممکن است چند دقیقه طول بکشد که اطلاعات لازم برای شما را گردآوری کنیم',
 }
 
 export const pullToRefreshLabels = {
