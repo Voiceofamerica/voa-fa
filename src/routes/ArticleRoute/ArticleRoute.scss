@@ -14,7 +14,7 @@
   .backButton {
     position: fixed;
     top: 10px;
-    left: 10px;
+    right: 10px;
     background: $black;
     color: $white;
     width: calc(#{$menu-height} - 20px);
